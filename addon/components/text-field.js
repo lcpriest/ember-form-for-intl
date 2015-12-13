@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/text-field';
 
+import titlecase from '../utils/titlecase';
+
 const {
   assert,
   set,
@@ -19,11 +21,18 @@ const TextFieldComponent = Component.extend({
     assert('{{text-field}} requires object to be set',
       objectType === 'object' || objectType === 'instance');
 
+    this._setupLabel();
+
     this._super(...arguments);
   },
 
   update(object, propertyName, value) {
     set(object, propertyName, value);
+  },
+
+  _setupLabel() {
+    set(this, 'label',
+      this.getAttr('label') || titlecase(this.getAttr('propertyName')));
   }
 });
 

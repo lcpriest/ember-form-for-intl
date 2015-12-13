@@ -68,3 +68,13 @@ test('It can be given a custom update action', function(assert) {
 
   run(() => typeInInput(this.$('input'), 'Robert'));
 });
+
+test('It has a label inferred from the propertyName', function(assert) {
+  this.render(hbs`{{text-field "firstName" object=object}}`);
+  assert.equal(this.$('label').text().trim(), 'First Name');
+});
+
+test('A custom label can be set', function(assert) {
+  this.render(hbs`{{text-field "firstName" object=object label="First"}}`);
+  assert.equal(this.$('label').text().trim(), 'First');
+});
