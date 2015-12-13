@@ -2,8 +2,17 @@
 language: node_js
 node_js:
   - "0.12"
+  - "4.2"
+  - "5.0"
 
 sudo: false
+
+addons:
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
 
 cache:
   directories:
@@ -11,8 +20,6 @@ cache:
 
 env:
   - EMBER_TRY_SCENARIO=default
-  - EMBER_TRY_SCENARIO=ember-release
-  - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
 
 matrix:
