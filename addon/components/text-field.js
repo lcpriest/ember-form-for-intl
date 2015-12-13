@@ -15,6 +15,7 @@ const {
 
 const TextFieldComponent = Component.extend({
   layout,
+  type: 'text',
 
   didReceiveAttrs() {
     assert('{{text-field}} requires propertyName to be set',
