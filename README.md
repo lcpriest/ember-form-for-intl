@@ -1,6 +1,11 @@
-# Ember-form-for
+# Ember Form For
 
-This README outlines the details of collaborating on this Ember addon.
+This Ember Addon will give you a simple way to build nice looking forms.
+
+__WARNING__: This addon uses __contextual helpers__ and is therefor only
+compatible with apps built with Ember.js version __2.3__ and up.
+
+__NOTE__: This addon is a work in progress, a full readme will be addon soon.
 
 ## Installation
 
