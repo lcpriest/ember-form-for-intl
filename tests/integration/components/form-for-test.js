@@ -15,7 +15,7 @@ test('It yields an helper for rendering form components', function(assert) {
   this.set('object', {});
   this.render(hbs`
     {{#form-for object as |f|}}
-      {{f.text-field}}
+      {{f.text-field "name"}}
     {{/form-for}}
   `);
 

@@ -7,7 +7,11 @@ const {
 } = Ember;
 
 moduleForComponent('text-field', 'Integration | Component | {{text-field}}', {
-  integration: true
+  integration: true,
+
+  setup() {
+    this.set('object', {});
+  }
 });
 
 function typeInInput(input, value) {
@@ -15,9 +19,16 @@ function typeInInput(input, value) {
   input.trigger('input');
 }
 
-test('It renders an input', function(assert) {
-  this.render(hbs`{{text-field}}`);
-  assert.equal(this.$('input').length, 1);
+test('It raises an error when propertyName is not set', function(assert) {
+  assert.throws(() => {
+    this.render(hbs`{{text-field object=object}}`);
+  }, /{{text-field}} requires propertyName to be set/);
+});
+
+test('It raises an error when object is not set', function(assert) {
+  assert.throws(() => {
+    this.render(hbs`{{text-field propertyName="name"}}`);
+  }, /{{text-field}} requires object to be set/);
 });
 
 test('The input\'s value is equal to the given object and propertyName', function(assert) {
