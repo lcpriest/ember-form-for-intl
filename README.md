@@ -1,5 +1,9 @@
 # Ember Form For
 
+[![npm version](https://badge.fury.io/js/ember-form-for.svg)](http://badge.fury.io/js/ember-form-for)
+[![Build Status](https://travis-ci.org/martndemus/ember-form-for.svg?branch=master)](https://travis-ci.org/martndemus/ember-form-for)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-form-for.svg)](http://emberobserver.com/addons/ember-form-for)
+
 This Ember Addon will give you a simple way to build nice looking forms.
 
 __WARNING__: This addon uses __contextual helpers__ and is therefor only
