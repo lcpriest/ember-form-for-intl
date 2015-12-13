@@ -1,5 +1,6 @@
-<label>{{label}}</label>
+<label for={{identifier}}>{{label}}</label>
 {{one-way-input
+    id=identifier
     value=(get object propertyName)
     update=(action update object propertyName)
 }}

@@ -78,3 +78,11 @@ test('A custom label can be set', function(assert) {
   this.render(hbs`{{text-field "firstName" object=object label="First"}}`);
   assert.equal(this.$('label').text().trim(), 'First');
 });
+
+test('Clicking on the label focuses the input', function(assert) {
+  this.render(hbs`{{text-field "firstName" object=object}}`);
+
+  // Clicking and checking for focus status was unreliable
+  // So we test for having for and id attribute being the same
+  assert.equal(this.$('label').attr('for'), this.$('input').attr('id'));
+});

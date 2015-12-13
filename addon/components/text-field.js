@@ -5,6 +5,9 @@ import titlecase from '../utils/titlecase';
 
 const {
   assert,
+  computed,
+  get,
+  guidFor,
   set,
   typeOf,
   Component
@@ -25,6 +28,10 @@ const TextFieldComponent = Component.extend({
 
     this._super(...arguments);
   },
+
+  identifier: computed('object', 'propertyName', function() {
+    return `${guidFor(get(this, 'object'))}_${get(this, 'propertyName')}`;
+  }),
 
   update(object, propertyName, value) {
     set(object, propertyName, value);
