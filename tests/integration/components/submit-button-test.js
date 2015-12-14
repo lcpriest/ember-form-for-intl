@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('submit-button', 'Integration | Component | submit button', {
+moduleForComponent('submit-button', 'Integration | Component | {{submit-button}}', {
   integration: true
 });
 

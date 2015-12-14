@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('reset-button', 'Integration | Component | reset button', {
+moduleForComponent('reset-button', 'Integration | Component | {{reset-button}}', {
   integration: true
 });
 

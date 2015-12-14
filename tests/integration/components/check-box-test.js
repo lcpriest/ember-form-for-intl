@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('check-box', 'Integration | Component | check box', {
+moduleForComponent('check-box', 'Integration | Component | {{check-box}}', {
   integration: true,
 
   setup() {

@@ -30,12 +30,16 @@ const TextFieldComponent = Component.extend({
     this._super(...arguments);
   },
 
-  identifier: computed('object', 'propertyName', function() {
-    return `${guidFor(get(this, 'object'))}_${get(this, 'propertyName')}`;
+  identifier: computed('object', 'propertyName', 'value', function() {
+    return this._identifier();
   }),
 
   update(object, propertyName, value) {
     set(object, propertyName, value);
+  },
+
+  _identifier() {
+    return `${guidFor(get(this, 'object'))}_${get(this, 'propertyName')}`;
   },
 
   _setupLabel() {
