@@ -6,10 +6,32 @@
 
 This Ember Addon will give you a simple way to build nice looking forms.
 
-__WARNING__: This addon uses __contextual helpers__ and is therefor only
+__WARNING__: This addon uses __contextual helpers__ and is therefore only
 compatible with apps built with Ember.js version __2.3__ and up.
 
-__NOTE__: This addon is a work in progress, a full readme will be addon soon.
+__NOTE__: This addon is a work in progress, a full readme will be added soon.
+
+#### Roadmap (but don't hold me to it)
+
+* TextArea, Checkboxes, radios, select
+* Picking or searching for an object from the Ember Data store
+* Custom style options
+
+## Using Ember Form For
+
+```hbs
+{{#form-for object as |f|}}
+  {{f.text-field "firstName"}}
+  {{f.text-field "lastName"}}
+  {{f.date-field "birthDate"}}
+  {{f.email-field "emailAddress"}}
+
+  {{f.text-field "userName"}}
+  {{f.password-field "password"}}
+
+  {{f.submit}}
+{{/form-for}}
+```
 
 ## Installation
 
