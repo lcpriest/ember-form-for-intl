@@ -37,3 +37,7 @@ test('Also accepts a space seperated string for options', function(assert) {
                       options="male female unspecified unknown"}}`);
   assert.equal(this.$('input[type="radio"]').length, 4);
 });
+
+test('It has a label', function(assert) {
+  assert.equal(this.$('label:eq(0)').text().trim(), 'Gender');
+});

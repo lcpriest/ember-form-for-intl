@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/radio-button-group';
 
+import titlecase from '../utils/titlecase';
+
 const {
   computed,
   get,
@@ -20,6 +22,9 @@ export default Ember.Component.extend({
     }
 
     set(this, 'options', options);
+
+    set(this, 'label',
+      this.getAttr('label') || titlecase(this.getAttr('propertyName')));
   },
 
   identifier: computed('object', 'propertyName', function() {
