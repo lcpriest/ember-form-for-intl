@@ -34,3 +34,16 @@ test('It puts the given attribute\'s value in the input', function(assert) {
 
   assert.equal($input.val(), 'Peter');
 });
+
+test('It\'s helper can render a submit button', function(assert) {
+  assert.expect(1);
+  this.set('object', { name: 'Peter' });
+  this.on('submit', () => assert.ok(true));
+  this.render(hbs`
+    {{#form-for object submit=(action 'submit') as |f|}}
+      {{f.submit}}
+    {{/form-for}}
+  `);
+
+  this.$('input[type="submit"]').click();
+});
