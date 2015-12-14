@@ -1,0 +1,12 @@
+<label for={{identifier}}>
+  {{one-way-input
+      id=identifier
+      checked=(get object propertyName)
+      value=propertyName
+      update=(action update object propertyName)
+      type="checkbox"
+
+      name=name
+  }}
+  {{label}}
+</label>

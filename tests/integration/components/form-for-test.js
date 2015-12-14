@@ -1,8 +1,15 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+const { run } = Ember;
+
 moduleForComponent('form-for', 'Integration | Component | {{form-for}}', {
-  integration: true
+  integration: true,
+
+  setup() {
+    this.set('object', { name: 'Peter' });
+  }
 });
 
 test('It renders a form element', function(assert) {
@@ -12,7 +19,6 @@ test('It renders a form element', function(assert) {
 });
 
 test('It yields an helper for rendering form components', function(assert) {
-  this.set('object', {});
   this.render(hbs`
     {{#form-for object as |f|}}
       {{f.text-field "name"}}
@@ -23,7 +29,6 @@ test('It yields an helper for rendering form components', function(assert) {
 });
 
 test('It puts the given attribute\'s value in the input', function(assert) {
-  this.set('object', { name: 'Peter' });
   this.render(hbs`
     {{#form-for object as |f|}}
       {{f.text-field "name"}}
@@ -35,10 +40,43 @@ test('It puts the given attribute\'s value in the input', function(assert) {
   assert.equal($input.val(), 'Peter');
 });
 
+test('By default object properties are updated on typing', function(assert) {
+  this.render(hbs`
+    {{#form-for object as |f|}}
+      {{f.text-field propertyName="name"}}
+    {{/form-for}}
+  `);
+
+  let $input = this.$('form input[type="text"]');
+
+  run(() => {
+    $input.val('Robert');
+    $input.trigger('input');
+  });
+
+  assert.equal(this.get('object.name'), 'Robert');
+});
+
+test('It passes an update action to the fields', function(assert) {
+  assert.expect(1);
+  this.on('update', (object, propertyName, value) => {
+    assert.equal(value, 'Robert');
+  });
+
+  this.render(hbs`
+    {{#form-for object update=(action 'update') as |f|}}
+      {{f.text-field "name"}}
+    {{/form-for}}
+  `);
+
+  let $input = this.$('form input[type="text"]');
+  $input.val('Robert');
+  $input.trigger('input');
+});
+
 test('It\'s helper can render a submit button', function(assert) {
   assert.expect(1);
-  this.set('object', { name: 'Peter' });
-  this.on('submit', () => assert.ok(true));
+  this.on('submit', (object) => assert.equal(object, this.get('object')));
   this.render(hbs`
     {{#form-for object submit=(action 'submit') as |f|}}
       {{f.submit}}
@@ -46,4 +84,42 @@ test('It\'s helper can render a submit button', function(assert) {
   `);
 
   this.$('input[type="submit"]').click();
+});
+
+test('Submit calls object#save by default', function(assert) {
+  assert.expect(1);
+  this.set('object', { save: () => assert.ok(true) });
+
+  this.render(hbs`
+    {{#form-for object as |f|}}
+      {{f.submit}}
+    {{/form-for}}
+  `);
+
+  this.$('input[type="submit"]').click();
+});
+
+test('It\'s helper can render a reset button', function(assert) {
+  assert.expect(1);
+  this.on('reset', (object) => assert.equal(object, this.get('object')));
+  this.render(hbs`
+    {{#form-for object reset=(action 'reset') as |f|}}
+      {{f.reset}}
+    {{/form-for}}
+  `);
+
+  this.$('input[type="reset"]').click();
+});
+
+test('Reset calls object#rollback by default', function(assert) {
+  assert.expect(1);
+  this.set('object', { rollback: () => assert.ok(true) });
+
+  this.render(hbs`
+    {{#form-for object as |f|}}
+      {{f.reset}}
+    {{/form-for}}
+  `);
+
+  this.$('input[type="reset"]').click();
 });

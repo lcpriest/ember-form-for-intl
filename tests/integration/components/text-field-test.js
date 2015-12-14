@@ -51,8 +51,9 @@ test('It triggers a default update action when being typed in', function(assert)
   assert.equal(this.get('object.name'), 'Robert');
 });
 
-test('It can be given a custom update action', function(assert) {
+test('It can be passed an update action', function(assert) {
   assert.expect(1);
+
   this.on('update', (object, propertyName, value) => {
     assert.equal(value, 'Robert');
   });
