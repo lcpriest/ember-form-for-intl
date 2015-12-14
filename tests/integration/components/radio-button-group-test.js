@@ -31,3 +31,9 @@ test('Clicking a radio updates the value', function(assert) {
   assert.equal(this.$('input[value="male"]:checked').length, 1);
   assert.equal(this.get('object.gender'), 'male');
 });
+
+test('Also accepts a space seperated string for options', function(assert) {
+  this.render(hbs`{{radio-button-group object=object propertyName="gender"
+                      options="male female unspecified unknown"}}`);
+  assert.equal(this.$('input[type="radio"]').length, 4);
+});
