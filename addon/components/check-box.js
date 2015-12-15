@@ -3,5 +3,7 @@ import layout from '../templates/components/check-box';
 
 export default TextFieldComponent.extend({
   layout,
-  type: 'checkbox'
+  type: 'checkbox',
+
+  instrumentDisplay: '{{check-box}}'
 });

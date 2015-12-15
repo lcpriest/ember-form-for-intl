@@ -1,18 +1,15 @@
 import Ember from 'ember';
 import layout from '../templates/components/radio-button-group';
 
-import titlecase from '../utils/titlecase';
+import FormFieldMixin from '../mixins/form-field';
 
 const {
-  computed,
-  get,
-  guidFor,
   set,
   typeOf,
   String: { w }
 } = Ember;
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(FormFieldMixin, {
   layout,
 
   didReceiveAttrs() {
@@ -23,13 +20,8 @@ export default Ember.Component.extend({
 
     set(this, 'options', options);
 
-    set(this, 'label',
-      this.getAttr('label') || titlecase(this.getAttr('propertyName')));
+    this._super(...arguments);
   },
-
-  identifier: computed('object', 'propertyName', function() {
-    return `${guidFor(get(this, 'object'))}_${get(this, 'propertyName')}`;
-  }),
 
   update(object, propertyName, value) {
     set(object, propertyName, value);

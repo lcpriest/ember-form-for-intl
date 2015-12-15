@@ -1,50 +1,21 @@
 import Ember from 'ember';
 import layout from '../templates/components/text-field';
 
-import titlecase from '../utils/titlecase';
+import FormFieldMixin from '../mixins/form-field';
 
 const {
-  assert,
-  computed,
-  get,
-  guidFor,
   set,
-  typeOf,
   Component
 } = Ember;
 
-const TextFieldComponent = Component.extend({
+const TextFieldComponent = Component.extend(FormFieldMixin, {
   layout,
   type: 'text',
 
-  didReceiveAttrs() {
-    assert('{{text-field}} requires propertyName to be set',
-      typeOf(this.getAttr('propertyName')) === 'string');
-
-    let objectType = typeOf(this.getAttr('object'));
-    assert('{{text-field}} requires object to be set',
-      objectType === 'object' || objectType === 'instance');
-
-    this._setupLabel();
-
-    this._super(...arguments);
-  },
-
-  identifier: computed('object', 'propertyName', 'value', function() {
-    return this._identifier();
-  }),
+  instrumentDisplay: '{{text-field}}',
 
   update(object, propertyName, value) {
     set(object, propertyName, value);
-  },
-
-  _identifier() {
-    return `${guidFor(get(this, 'object'))}_${get(this, 'propertyName')}`;
-  },
-
-  _setupLabel() {
-    set(this, 'label',
-      this.getAttr('label') || titlecase(this.getAttr('propertyName')));
   }
 });
 

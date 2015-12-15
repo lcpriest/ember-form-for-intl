@@ -3,14 +3,17 @@ import TextFieldComponent from './text-field';
 import layout from '../templates/components/radio-button';
 
 import invokeAction from 'ember-invoke-action';
+import FormFieldMixin from '../mixins/form-field';
 
 import titlecase from '../utils/titlecase';
 
 const { assert, get, set } = Ember;
 
-export default TextFieldComponent.extend({
+export default TextFieldComponent.extend(FormFieldMixin, {
   layout,
   type: 'radio',
+
+  instrumentDisplay: '{{radio-button}}',
 
   didReceiveAttrs() {
     assert('{{radio-button}} requires a value',
