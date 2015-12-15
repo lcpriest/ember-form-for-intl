@@ -10,10 +10,11 @@ const {
   computed: { alias },
   get,
   set,
+  Component,
   String: { w }
 } = Ember;
 
-export default Ember.Component.extend(FormFieldMixin, {
+const SelectBoxComponent = Component.extend(FormFieldMixin, {
   layout,
 
   instrumentDisplay: '{{select-box}}',
@@ -119,3 +120,9 @@ export default Ember.Component.extend(FormFieldMixin, {
     }
   }
 });
+
+SelectBoxComponent.reopenClass({
+  positionalParams: ['propertyName', 'options']
+});
+
+export default SelectBoxComponent;

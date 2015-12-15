@@ -6,10 +6,11 @@ import FormFieldMixin from '../mixins/form-field';
 const {
   set,
   typeOf,
+  Component,
   String: { w }
 } = Ember;
 
-export default Ember.Component.extend(FormFieldMixin, {
+const RadioButtonGroupComponent = Component.extend(FormFieldMixin, {
   layout,
 
   didReceiveAttrs() {
@@ -27,3 +28,9 @@ export default Ember.Component.extend(FormFieldMixin, {
     set(object, propertyName, value);
   }
 });
+
+RadioButtonGroupComponent.reopenClass({
+  positionalParams: ['propertyName', 'options']
+});
+
+export default RadioButtonGroupComponent;

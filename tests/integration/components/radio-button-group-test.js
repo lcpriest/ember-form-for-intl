@@ -41,3 +41,13 @@ test('Also accepts a space seperated string for options', function(assert) {
 test('It has a label', function(assert) {
   assert.equal(this.$('label:eq(0)').text().trim(), 'Gender');
 });
+
+test('It accepts propertyName as first positional param', function(assert) {
+  assert.expect(0);
+  this.render(hbs`{{radio-button-group "gender" object=object options=options}}`);
+});
+
+test('It accepts options as second positional param', function(assert) {
+  this.render(hbs`{{radio-button-group "gender" options object=object}}`);
+  assert.equal(this.$('input[type="radio"]').length, 3);
+});

@@ -26,6 +26,21 @@ test('It renders with a label', function(assert) {
   assert.equal(this.$('label').text().trim(), 'Gender');
 });
 
+test('It accepts propertyName as a positionalParam', function(assert) {
+  this.render(hbs`
+    {{select-box "gender" object=object options=options}}
+  `);
+  assert.equal(this.$('option:selected').val(), 'female');
+});
+
+test('It accepts options as a second positionalParam', function(assert) {
+  this.render(hbs`
+    {{select-box "gender" options object=object}}
+  `);
+
+  assert.equal(this.$('option').length, 3);
+});
+
 test('Selecting a value updates the selected value', function(assert) {
   this.$('select').val('male');
   this.$('select').trigger('change');
