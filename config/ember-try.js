@@ -2,8 +2,13 @@
 module.exports = {
   scenarios: [
     {
-      name: 'default',
-      dependencies: { }
+      name: 'ember-beta',
+      dependencies: {
+        'ember': 'components/ember#beta'
+      },
+      resolutions: {
+        'ember': 'beta'
+      }
     },
     {
       name: 'ember-canary',
