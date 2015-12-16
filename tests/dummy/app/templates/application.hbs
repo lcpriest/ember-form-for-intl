@@ -1,3 +1,19 @@
-<h2 id="title">Welcome to Ember</h2>
+<h2 id="title">Welcome to Ember Form For</h2>
+
+{{#form-for object as |f|}}
+  {{f.text-field "firstName"}}
+  {{f.text-field "lastName"}}
+  {{f.select-box "gender" "unknown male female"}}
+  {{f.date-field "birthDate"}}
+
+  {{f.email-field "emailAddress"}}
+  {{f.text-field "userName"}}
+  {{f.password-field "password"}}
+
+  {{f.check-box "terms" label="I agree to the Terms of Service"}}
+
+  {{f.reset  "Clear form"}}
+  {{f.submit "Create account"}}
+{{/form-for}}
 
 {{outlet}}

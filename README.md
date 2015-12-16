@@ -23,35 +23,22 @@ __NOTE__: This addon is a work in progress, a full readme will be added soon.
 {{#form-for object as |f|}}
   {{f.text-field "firstName"}}
   {{f.text-field "lastName"}}
+  {{f.select-box "gender" "unknown male female"}}
   {{f.date-field "birthDate"}}
-  {{f.email-field "emailAddress"}}
 
+  {{f.email-field "emailAddress"}}
   {{f.text-field "userName"}}
   {{f.password-field "password"}}
 
-  {{f.submit}}
+  {{f.check-box "terms" label="I agree to the Terms of Service"}}
+
+  {{f.reset  "Clear form"}}
+  {{f.submit "Create account"}}
 {{/form-for}}
 ```
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
-
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```sh
+$ ember install ember-form-for
+```
