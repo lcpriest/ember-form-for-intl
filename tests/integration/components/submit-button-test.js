@@ -18,6 +18,11 @@ test('It\'s default value is \'Submit\'', function(assert) {
 });
 
 test('It can be passed a text value', function(assert) {
-  this.render(hbs`{{submit-button value="Create"}}`);
+  this.render(hbs`{{submit-button label="Create"}}`);
+  assert.equal(this.$('input').val(), 'Create');
+});
+
+test('It\'s first positional param can be the label', function(assert) {
+  this.render(hbs`{{submit-button "Create"}}`);
   assert.equal(this.$('input').val(), 'Create');
 });

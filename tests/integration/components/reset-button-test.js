@@ -12,12 +12,17 @@ test('It invokes reset action on click', function(assert) {
   this.$('input').click();
 });
 
-test('It\'s default value is \'Reset\'', function(assert) {
+test('It\'s default label is \'Reset\'', function(assert) {
   this.render(hbs`{{reset-button}}`);
   assert.equal(this.$('input').val(), 'Reset');
 });
 
-test('It can be passed a text value', function(assert) {
-  this.render(hbs`{{reset-button value="Cancel"}}`);
+test('It can be passed a label', function(assert) {
+  this.render(hbs`{{reset-button label="Cancel"}}`);
+  assert.equal(this.$('input').val(), 'Cancel');
+});
+
+test('It\'s first positional param can be the label', function(assert) {
+  this.render(hbs`{{reset-button "Cancel"}}`);
   assert.equal(this.$('input').val(), 'Cancel');
 });
