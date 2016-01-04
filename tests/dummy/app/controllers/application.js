@@ -1,13 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  object: Ember.Object.create({
-    save() {
-      window.alert('Pretend save!');
-    },
+  submit() {
+    window.alert('Saved!');
+  },
 
-    rollback() {
-      window.alert('Pretend rollback!');
-    }
-  })
+  reset() {
+    this.set('object', Ember.Object.create());
+  },
+
+  object: Ember.Object.create()
 });

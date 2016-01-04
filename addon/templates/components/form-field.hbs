@@ -1,0 +1,9 @@
+{{yield (hash
+  labelText=labelText
+  label=(component 'form-label' labelText for=fieldId form=form)
+  control=(component control (get object propertyName)
+            id=fieldId
+            name=fieldName
+            form=form
+            update=(action update object propertyName))
+)}}

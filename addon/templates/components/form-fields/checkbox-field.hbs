@@ -1,0 +1,24 @@
+{{#form-field object propertyName
+    form=form
+    label=label
+    control="form-controls/checkbox"
+    update=(action update) as |f|}}
+  {{#f.label}}
+    {{f.control
+        accesskey=accesskey
+        autocomplete=autocomplete
+        autofocus=autofocus
+        autosave=autosave
+        dir=dir
+        disabled=disabled
+        hidden=hidden
+        lang=lang
+        list=list
+        required=required
+        tabindex=tabindex
+        title=title
+    }}
+    {{f.labelText}}
+  {{/f.label}}
+{{/form-field}}
+{{yield}}
