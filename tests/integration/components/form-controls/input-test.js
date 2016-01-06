@@ -40,6 +40,14 @@ test('Changing the input value triggers the update action', function(assert) {
   assert.equal(this.get('value'), 'foo', 'Value is updated to \'foo\'');
 });
 
+test('It is possible to specify a sanitizeInput function', function(assert) {
+  this.on('sanitize', (value) => value.toUpperCase());
+  this.render(hbs`{{form-controls/input
+    sanitizeInput=(action 'sanitize') update=(action (mut value))}}`);
+  this.$('input').val('foo').trigger('change');
+  assert.equal(this.get('value'), 'FOO', 'Value was transformed to uppercase');
+});
+
 test(`It's possible to bind 'autosave'`, function(assert) {
   this.render(hbs`{{form-controls/input autosave='search'}}`);
   assert.equal(this.$('input').attr('autosave'), 'search', 'Attribute autosave is set');

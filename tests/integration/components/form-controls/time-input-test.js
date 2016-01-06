@@ -15,3 +15,18 @@ test('It accepts a time value', function(assert) {
   this.render(hbs`{{form-controls/time-input value=value}}`);
   assert.equal(this.$('input').val(), '16:09', 'Time value is set');
 });
+
+test('Updating a time input that was set with a string', function(assert) {
+  this.set('value', '16:09');
+  this.render(hbs`{{form-controls/time-input value=value update=(action (mut value))}}`);
+  this.$('input').val('16:10').trigger('change');
+  assert.equal(this.get('value'), '16:10');
+});
+
+test('Updating a time input that was set with a date', function(assert) {
+  this.set('value', new Date('2015-01-01T16:09'));
+  this.render(hbs`{{form-controls/time-input value=value update=(action (mut value))}}`);
+  this.$('input').val('16:10').trigger('change');
+  assert.ok(this.get('value') instanceof Date);
+  assert.equal(+this.get('value'), +(new Date('2015-01-01T16:10')));
+});
