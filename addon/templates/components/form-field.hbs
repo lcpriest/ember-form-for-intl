@@ -5,6 +5,7 @@
   control=(component control (get object propertyName)
             id=fieldId
             name=fieldName
+            invalid=(if (get object.errors propertyName) true false)
             form=form
             update=(action update object propertyName))
 )}}

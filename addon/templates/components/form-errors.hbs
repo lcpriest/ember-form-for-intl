@@ -1,7 +1,7 @@
 {{#if errors}}
   <div>
     {{#each errors as |error|}}
-      <div>{{error.message}}</div>
+      <div role="alert">{{error.message}}</div>
     {{/each}}
   </div>
 {{/if}}

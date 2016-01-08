@@ -205,3 +205,23 @@ test(`it's possible to bind 'title'`, function(assert) {
   this.render(hbs`{{form-controls/select title="A Title"}}`);
   assert.equal(this.$('select').attr('title'), 'A Title', 'attribute title is set');
 });
+
+test('Required also sets aria-required', function(assert) {
+  this.render(hbs`{{form-controls/select required=true}}`);
+  assert.equal(this.$('select').attr('aria-required'), 'true', 'attribute aria-required is set');
+});
+
+test('If not required, set aria-require=false', function(assert) {
+  this.render(hbs`{{form-controls/select}}`);
+  assert.equal(this.$('select').attr('aria-required'), 'false', 'attribute aria-required is set');
+});
+
+test('Invalid=true sets araia-invalid="true"', function(assert) {
+  this.render(hbs`{{form-controls/select invalid=true}}`);
+  assert.equal(this.$('select').attr('aria-invalid'), 'true', 'attribute aria-invalid is set');
+});
+
+test('It is possible to set describedBy', function(assert) {
+  this.render(hbs`{{form-controls/select describedBy="element-one"}}`);
+  assert.equal(this.$('select').attr('aria-describedby'), 'element-one', 'attribute aria-describedby is set');
+});

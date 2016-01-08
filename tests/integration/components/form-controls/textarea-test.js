@@ -124,3 +124,23 @@ test(`It's possible to bind 'placeholder'`, function(assert) {
   this.render(hbs`{{form-controls/textarea placeholder='foo'}}`);
   assert.equal(this.$('textarea').attr('placeholder'), 'foo', 'Attribute placeholder is set');
 });
+
+test('Required also sets aria-required', function(assert) {
+  this.render(hbs`{{form-controls/textarea required=true}}`);
+  assert.equal(this.$('textarea').attr('aria-required'), 'true', 'attribute aria-required is set');
+});
+
+test('If not required, set aria-require=false', function(assert) {
+  this.render(hbs`{{form-controls/textarea}}`);
+  assert.equal(this.$('textarea').attr('aria-required'), 'false', 'attribute aria-required is set');
+});
+
+test('Invalid=true sets araia-invalid="true"', function(assert) {
+  this.render(hbs`{{form-controls/textarea invalid=true}}`);
+  assert.equal(this.$('textarea').attr('aria-invalid'), 'true', 'attribute aria-invalid is set');
+});
+
+test('It is possible to set describedBy', function(assert) {
+  this.render(hbs`{{form-controls/textarea describedBy="element-one"}}`);
+  assert.equal(this.$('textarea').attr('aria-describedby'), 'element-one', 'attribute aria-describedby is set');
+});

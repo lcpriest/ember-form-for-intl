@@ -7,7 +7,7 @@
   {{#if hasBlock}}
     {{yield f}}
   {{else}}
-    {{f.label}}
+    {{f.label required=required}}
     {{f.control
         accesskey=accesskey
         autocomplete=autocomplete

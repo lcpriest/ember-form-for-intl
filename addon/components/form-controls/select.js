@@ -18,14 +18,17 @@ const SelectComponent =  Ember.Component.extend({
   attributeBindings: [
     'accesskey',
     'autofocus',
+    'describedBy:aria-describedby',
     'dir',
     'disabled',
     'form',
     'hidden',
+    'invalid:aria-invalid',
     'lang',
     'multiple',
     'name',
     'required',
+    'required:aria-required',
     'size',
     'tabindex',
     'title'
@@ -33,6 +36,11 @@ const SelectComponent =  Ember.Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
+
+    let required = this.getAttr('required');
+    if (required !== true) {
+      set(this, 'required', false);
+    }
 
     let options = this.getAttr('options');
     if (typeof options === 'string') {
