@@ -29,3 +29,8 @@ test('Alternatively can yield to block', function(assert) {
   this.render(hbs`{{#form-label}}TESTING{{/form-label}}`);
   assert.equal(this.$('label').text().trim(), 'TESTING');
 });
+
+test('Required adds a * to the label', function(assert) {
+  this.render(hbs`{{form-label "Test" required=true}}`);
+  assert.equal(this.$('label:contains(*)').length, 1);
+});
