@@ -65,6 +65,26 @@ test(`It's possible to bind 'required'`, function(assert) {
   assert.equal(this.$('input').attr('required'), 'required', 'attribute required is set');
 });
 
+test('Required also sets aria-required', function(assert) {
+  this.render(hbs`{{form-controls/base-input required=true}}`);
+  assert.equal(this.$('input').attr('aria-required'), 'true', 'attribute aria-required is set');
+});
+
+test('If not required, set aria-require=false', function(assert) {
+  this.render(hbs`{{form-controls/base-input}}`);
+  assert.equal(this.$('input').attr('aria-required'), 'false', 'attribute aria-required is set');
+});
+
+test('Invalid=true sets araia-invalid="true"', function(assert) {
+  this.render(hbs`{{form-controls/base-input invalid=true}}`);
+  assert.equal(this.$('input').attr('aria-invalid'), 'true', 'attribute aria-invalid is set');
+});
+
+test('It is possible to set describedBy', function(assert) {
+  this.render(hbs`{{form-controls/base-input describedBy="element-one"}}`);
+  assert.equal(this.$('input').attr('aria-describedby'), 'element-one', 'attribute aria-describedby is set');
+});
+
 test(`It's possible to bind 'tabindex'`, function(assert) {
   this.render(hbs`{{form-controls/base-input tabindex=4}}`);
   assert.equal(this.$('input').attr('tabindex'), 4, 'attribute tabindex is set');
