@@ -102,6 +102,18 @@ test('It passes the form attribute to the label and control', function(assert) {
   assert.equal(this.$('input').attr('form'), 'form123');
 });
 
+test('It can display errors', function(assert) {
+  this.set('object.errors', { givenName: [{ message: 'can\'t be blank' }] });
+
+  this.render(hbs`
+    {{#form-field "givenName" object=object form="form123" as |f|}}
+      {{f.errors}}
+    {{/form-field}}
+  `);
+
+  assert.ok(this.$().text().trim().indexOf('can\'t be blank') !== -1);
+});
+
 test('By default changing the input updates the value', function(assert) {
   this.render(hbs`
     {{#form-field "givenName" object=object as |f|}}
