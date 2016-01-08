@@ -47,7 +47,7 @@ const FormFieldComponent = Component.extend({
 });
 
 FormFieldComponent.reopenClass({
-  positionalParams: ['object', 'propertyName']
+  positionalParams: ['propertyName']
 });
 
 export default FormFieldComponent;

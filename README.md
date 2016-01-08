@@ -193,6 +193,36 @@ object the form describes.
 
 The `{{button}}` is just a simple form button, you should pass it a `click` action.
 
+### Custom fields
+
+If you want to use custom form controls, then your form control must atleast
+adhere to the following signature:
+
+```hbs
+{{my-custom-input value update=(action 'update')}}
+```
+
+Then you can use that custom input as following:
+
+```hbs
+{{#form-for myObject as |f|}}
+  {{f.custom-field "myProperty" control="my-custom-input"}}
+{{/form-for}}
+```
+
+If you also want to be able to control the layout of the custom field:
+
+```hbs
+{{#form-for myObject as |f|}}
+  {{#f.custom-field "myProperty" control="my-custom-input" as |ff|}}
+    {{#ff.label}}
+      {{ff.control}}
+      {{ff.labelText}}
+    {{/ff.label}}
+  {{/f.custom-field}}
+{{/form-for}}
+```
+
 ## Installation
 
 ```sh
