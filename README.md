@@ -99,8 +99,7 @@ The `{{email-field}}` component can be passed the attribute `multiple`.
 * `{{time-field}}`
 * `{{week-field}}`
 
-All date/time fields can process `Date` objects, but will pass a `String` when
-updated.
+All date/time fields can process `Date` objects.
 
 All fields can be passed the `min`, `max` and `step` attributes.
 

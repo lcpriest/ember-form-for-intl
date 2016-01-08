@@ -17,11 +17,21 @@ const InputComponent = BaseInputComponent.extend({
   ],
 
   input() {
-    invokeAction(this, 'update', this.readDOMAttr('value'));
+    this._handleUpdate();
   },
 
   change() {
-    invokeAction(this, 'update', this.readDOMAttr('value'));
+    this._handleUpdate();
+  },
+
+  sanitizeInput(value) {
+    return value;
+  },
+
+  _handleUpdate() {
+    let value = this.readDOMAttr('value');
+    let sanitizedValue = this.sanitizeInput(value);
+    invokeAction(this, 'update', sanitizedValue);
   }
 });
 
