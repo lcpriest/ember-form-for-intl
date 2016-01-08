@@ -143,3 +143,15 @@ test('It can yield the labelText', function(assert) {
   `);
   assert.equal(this.$().text().trim(), 'Given name');
 });
+
+test('It passes invalid to the control when errors are present', function(assert) {
+  this.set('object.errors', { givenName: [{ message: 'can\'t be blank' }] });
+
+  this.render(hbs`
+    {{#form-field "givenName" object=object form="form123" as |f|}}
+      {{f.control}}
+    {{/form-field}}
+  `);
+
+  assert.equal(this.$('input').attr('aria-invalid'), 'true');
+});
