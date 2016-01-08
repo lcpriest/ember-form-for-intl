@@ -23,3 +23,8 @@ test('It renders nothing when no errors present', function(assert) {
   this.render(hbs`{{form-errors}}`);
   assert.equal(this.$('*').length, 0);
 });
+
+test('Errors have role=alert', function(assert) {
+  this.render(hbs`{{form-errors errors=errors}}`);
+  assert.equal(this.$('div[role="alert"]').length, 2);
+});
