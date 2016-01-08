@@ -74,6 +74,28 @@ test('It passes an update action to the fields', function(assert) {
   $input.trigger('input');
 });
 
+test('Adding a custom field', function(assert) {
+  this.render(hbs`
+    {{#form-for object as |f|}}
+      {{f.custom-field "name" control="form-controls/search-input"}}
+    {{/form-for}}
+  `);
+
+  assert.equal(this.$('form input[type="search"]').length, 1);
+});
+
+test('Adding a custom field with template', function(assert) {
+  this.render(hbs`
+    {{#form-for object as |f|}}
+      {{#f.custom-field "name" as |ff|}}
+        {{ff.control}}
+      {{/f.custom-field}}
+    {{/form-for}}
+  `);
+
+  assert.equal(this.$('form input').length, 1);
+});
+
 test('It\'s helper can render a submit button', function(assert) {
   assert.expect(1);
   this.on('submit', (object) => assert.equal(object, this.get('object')));
