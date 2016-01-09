@@ -2,10 +2,12 @@
   labelText=labelText
   label=(component 'form-label' labelText for=fieldId form=form)
   errors=(component 'form-errors' errors=(get object.errors propertyName))
+  hint=(component 'form-hint' hint=hint id=fieldHintId)
   control=(component control (get object propertyName)
             id=fieldId
             name=fieldName
             invalid=(if (get object.errors propertyName) true false)
+            describedBy=(if hint fieldHintId)
             form=form
             update=(action update object propertyName))
 )}}
