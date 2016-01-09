@@ -40,6 +40,10 @@ const FormFieldComponent = Component.extend({
     return `${baseId}_${get(this, 'propertyName')}`;
   }),
 
+  fieldHintId: computed('fieldId', function() {
+    return `${get(this, 'fieldId')}_hint`;
+  }),
+
   fieldName: computed('object', 'object.modelName', 'propertyName', function() {
     let objectName = get(this, 'object.modelName') || guidFor(get(this, 'object'));
     return `${objectName}[${get(this, 'propertyName')}]`;

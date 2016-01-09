@@ -144,6 +144,27 @@ test('It can yield the labelText', function(assert) {
   assert.equal(this.$().text().trim(), 'Given name');
 });
 
+test('It can yield a hint', function(assert) {
+  this.render(hbs`
+    {{#form-field "givenName" object=object hint="This is a hint" as |f|}}
+      {{f.hint}}
+    {{/form-field}}
+  `);
+  assert.equal(this.$('span').text().trim(), 'This is a hint');
+});
+
+test('It sets the describedBy of the control to the id of the hint', function(assert) {
+  let expectedId = `${guidFor(this.get('object'))}_givenName_hint`;
+  this.render(hbs`
+    {{#form-field "givenName" object=object hint="This is a hint" as |f|}}
+      {{f.hint}}
+      {{f.control}}
+    {{/form-field}}
+  `);
+  assert.equal(this.$('span').attr('id'), expectedId);
+  assert.equal(this.$('input').attr('aria-describedby'), expectedId);
+});
+
 test('It passes invalid to the control when errors are present', function(assert) {
   this.set('object.errors', { givenName: [{ message: 'can\'t be blank' }] });
 
