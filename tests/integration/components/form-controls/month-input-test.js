@@ -16,15 +16,7 @@ test('It accepts a date value', function(assert) {
   assert.equal(this.$('input').val(), '2015-10', 'Month value is set');
 });
 
-test('Updating a date input that was set with a string', function(assert) {
-  this.set('value', '2015-10');
-  this.render(hbs`{{form-controls/month-input value=value update=(action (mut value))}}`);
-  this.$('input').val('2015-10').trigger('change');
-  assert.equal(this.get('value'), '2015-10');
-});
-
-test('Updating a date input that was set with a date', function(assert) {
-  this.set('value', new Date(2015, 9));
+test('Updating a month input', function(assert) {
   this.render(hbs`{{form-controls/month-input value=value update=(action (mut value))}}`);
   this.$('input').val('2015-10').trigger('change');
   assert.ok(this.get('value') instanceof Date);

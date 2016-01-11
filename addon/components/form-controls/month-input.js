@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import NumberInputComponent from './number-input';
 
-import { toMonthString } from '../../utils/date-to-string';
+import { toMonthString } from '../../utils/date';
 
-const { get, set } = Ember;
+const { set } = Ember;
 
 export default NumberInputComponent.extend({
   type: 'month',
@@ -20,10 +20,8 @@ export default NumberInputComponent.extend({
   },
 
   sanitizeInput(value) {
-    if (get(this, 'value') instanceof Date) {
+    if (value != null) {
       return new Date(value);
-    } else {
-      return value;
     }
   }
 });
