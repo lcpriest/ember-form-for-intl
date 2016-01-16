@@ -26,7 +26,6 @@ matrix:
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
 
 install:
   - npm install -g bower
