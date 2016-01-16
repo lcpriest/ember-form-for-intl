@@ -36,7 +36,7 @@ const FormFieldComponent = Component.extend({
   }),
 
   fieldId: computed('object', 'form', 'propertyName', function() {
-    let baseId = get(this, 'form') || guidFor(get(this, 'object'));
+    let baseId = get(this, 'form') || get(this, 'elementId');
     return `${baseId}_${get(this, 'propertyName')}`;
   }),
 
