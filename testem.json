@@ -5,10 +5,8 @@
   "launch_in_ci": [
     "Chrome",
     "Firefox",
-    "PhantomJS"
   ],
   "launch_in_dev": [
-    "PhantomJS",
     "Chrome"
   ]
 }
