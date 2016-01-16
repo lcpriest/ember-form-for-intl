@@ -48,9 +48,9 @@ test('A custom form control can be specified', function(assert) {
 });
 
 test('It sets the "for" attr of the label and the "id" attr of the input', function(assert) {
-  let expectedId = `${guidFor(this.get('object'))}_givenName`;
+  let expectedId = `test123_givenName`;
   this.render(hbs`
-    {{#form-field "givenName" object=object as |f|}}
+    {{#form-field "givenName" id="test123" object=object as |f|}}
       {{f.label}}{{f.control}}
     {{/form-field}}
   `);
@@ -154,13 +154,13 @@ test('It can yield a hint', function(assert) {
 });
 
 test('It sets the describedBy of the control to the id of the hint', function(assert) {
-  let expectedId = `${guidFor(this.get('object'))}_givenName_hint`;
   this.render(hbs`
-    {{#form-field "givenName" object=object hint="This is a hint" as |f|}}
-      {{f.hint}}
+    {{#form-field "givenName" id="test123" object=object hint="This is a hint" as |f|}}
       {{f.control}}
+      {{f.hint}}
     {{/form-field}}
   `);
+  let expectedId = `test123_givenName_hint`;
   assert.equal(this.$('span').attr('id'), expectedId);
   assert.equal(this.$('input').attr('aria-describedby'), expectedId);
 });
