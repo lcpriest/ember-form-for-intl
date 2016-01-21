@@ -45,9 +45,14 @@ const FormFieldComponent = Component.extend({
   }),
 
   fieldName: computed('object', 'object.modelName', 'propertyName', function() {
-    let objectName = get(this, 'object.modelName') || guidFor(get(this, 'object'));
-    return `${objectName}[${get(this, 'propertyName')}]`;
-  })
+    return `${this._nameForObject()}[${get(this, 'propertyName')}]`;
+  }),
+
+  _nameForObject() {
+    return get(this, 'object.modelName') ||
+           get(this, 'object.constructor.modelName') ||
+           guidFor(get(this, 'object'));
+  }
 });
 
 FormFieldComponent.reopenClass({
