@@ -4,7 +4,7 @@ import { module, test } from 'qunit';
 module('Unit | Utility | humanize');
 
 test('Humanize a camelCased string', (assert) => {
-  assert.equal(humanize('firstName'), 'First name');
+  assert.equal(humanize('myFirstName'), 'My first name');
 });
 
 test('Humanize a under_scored string', (assert) => {
@@ -17,6 +17,10 @@ test('Humanize a dash-erized string', (assert) => {
 
 test('Humanize a space seperated string', (assert) => {
   assert.equal(humanize('first name'), 'First name');
+});
+
+test('Humanize a dot seprated string', (assert) => {
+  assert.equal(humanize('first.name'), 'First name');
 });
 
 module('Unit | Utility | titlecase');
