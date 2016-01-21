@@ -78,7 +78,7 @@ test('It sets the "name" attribute of input', function(assert) {
 });
 
 test('Property modelName is used in the "name" attribute if present on object', function(assert) {
-  this.set('object.modelName', 'person');
+  this.set('object.constructor', { modelName: 'person' });
   this.render(hbs`
     {{#form-field "givenName" object=object as |f|}}{{f.control}}{{/form-field}}
   `);
