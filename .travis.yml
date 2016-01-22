@@ -17,6 +17,7 @@ cache:
     - node_modules
 
 env:
+  - EMBER_TRY_SCENARIO=ember-2.3
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
 
