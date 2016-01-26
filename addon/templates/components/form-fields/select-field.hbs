@@ -1,7 +1,7 @@
 {{#form-field propertyName
     object=object
     form=form
-    control="form-controls/select"
+    control=control
     update=(action update) as |f|}}
   {{f.label required=required}}
   {{f.control
@@ -17,6 +17,8 @@
       optionValuePath=optionValuePath
       optionLabelPath=optionLabelPath
       required=required
+      search=search
+      tabindex=tabindex
   }}
   {{f.errors}}
   {{f.hint}}

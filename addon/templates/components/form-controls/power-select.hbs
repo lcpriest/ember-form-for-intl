@@ -1,0 +1,17 @@
+{{#component powerSelectComponent
+    selected=value
+    options=optionGroups
+    onchange=(action update)
+    search=search
+    tabindex=tabindex
+    as |option|}}
+  {{#if optionValuePath}}
+    {{#if optionLabelPath}}
+      {{get option optionLabelPath}}
+    {{else}}
+      {{get option optionValuePath}}
+    {{/if}}
+  {{else}}
+    {{option}}
+  {{/if}}
+{{/component}}
