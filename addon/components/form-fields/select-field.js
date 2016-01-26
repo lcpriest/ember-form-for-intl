@@ -7,6 +7,8 @@ const SelectFieldComponent = Ember.Component.extend({
   tagName: '',
   layout,
 
+  control: 'form-controls/select',
+
   update(object, propertyName, value) {
     set(object, propertyName, value);
   }
