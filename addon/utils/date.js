@@ -1,4 +1,4 @@
-const { ceil } = Math;
+const { abs, ceil } = Math;
 
 export const pad = (number, amount = 2) => {
   let padding = (new Array(amount)).join('0');
@@ -41,3 +41,16 @@ export const toTimeString = (date) =>
 
 export const toDatetimeLocalString = (date) =>
   `${toDateString(date)}T${toTimeString(date)}`;
+
+export const formatTimeZoneOffset = (offset) => {
+  if (offset === 0) {
+    offset = 'Z';
+  } else {
+    let hours   = abs(offset) / 60;
+    let minutes = abs(offset) % 60;
+    let sign    = offset > 0 ? '-' : '+';
+    offset = `${sign}${pad(hours)}:${pad(minutes)}`;
+  }
+
+  return offset;
+};
