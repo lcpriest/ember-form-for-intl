@@ -1,7 +1,10 @@
 import Ember from 'ember';
 import NumberInputComponent from './number-input';
 
-import { toDatetimeLocalString } from '../../utils/date';
+import {
+  toDatetimeLocalString,
+  formatTimeZoneOffset
+} from '../../utils/date';
 
 const { set } = Ember;
 
@@ -21,7 +24,8 @@ export default NumberInputComponent.extend({
 
   sanitizeInput(value) {
     if (value != null) {
-      return new Date(value);
+      let offset = (new Date(value)).getTimezoneOffset();
+      return new Date(value + formatTimeZoneOffset(offset));
     }
   }
 });

@@ -5,7 +5,8 @@ import {
   fromWeekString,
   toDateString,
   toTimeString,
-  toDatetimeLocalString
+  toDatetimeLocalString,
+  formatTimeZoneOffset
 } from 'ember-form-for/utils/date';
 
 import { module, test } from 'qunit';
@@ -64,4 +65,17 @@ module('Unit | Utility | date-to-string#toDatetimeLocalString');
 
 test('It stringifies to datetime-local format', (assert) => {
   assert.equal(toDatetimeLocalString(new Date(2015, 9, 21, 16, 9)), '2015-10-21T16:09');
+});
+
+module('Unit | Utility | date-to-string#formatTimeZoneOffset');
+
+test('Produces \'Z\' if 0', (assert) => {
+  assert.equal(formatTimeZoneOffset(0), 'Z');
+});
+
+test('Produces \'+01:00\' if -60', (assert) => {
+  assert.equal(formatTimeZoneOffset(-60), '+01:00');
+});
+test('Produces \'-01:00\' if 60', (assert) => {
+  assert.equal(formatTimeZoneOffset(60), '-01:00');
 });
