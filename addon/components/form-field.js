@@ -6,8 +6,10 @@ import { humanize } from '../utils/strings';
 const {
   assert,
   computed,
+  computed: { notEmpty, readOnly },
   get,
   guidFor,
+  mixin,
   set,
   Component
 } = Ember;
@@ -17,14 +19,27 @@ const FormFieldComponent = Component.extend({
 
   classNames: ['form-field'],
 
+  classNameBindings: [
+    'propertyIsChanged:form-field--changed',
+    'propertyIsDifferent:form-field--different',
+    'hasErrors:form-field--errors'
+  ],
+
   control: 'form-controls/input',
 
   didReceiveAttrs() {
     assert(`{{form-field}} requires an object property to be passed in`,
            this.getAttr('object') != null);
 
+    let propertyName = this.getAttr('propertyName');
     assert(`{{form-field}} requires the propertyName property to be set`,
            typeof this.getAttr('propertyName') === 'string');
+
+    mixin(this, {
+      propertyIsChanged:   readOnly(`object.${propertyName}IsChanged`),
+      propertyIsDifferent: readOnly(`object.${propertyName}IsDifferent`),
+      hasErrors:           notEmpty(`object.errors.${propertyName}`)
+    });
 
     this._super(...arguments);
   },
