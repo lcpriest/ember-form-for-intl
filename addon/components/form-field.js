@@ -15,6 +15,8 @@ const {
 const FormFieldComponent = Component.extend({
   layout,
 
+  classNames: ['form-field'],
+
   control: 'form-controls/input',
 
   didReceiveAttrs() {
