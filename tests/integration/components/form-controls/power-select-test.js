@@ -19,7 +19,7 @@ test('It renders a power select with options', function(assert) {
 
 test('A value is selected', function(assert) {
   this.render(hbs` {{form-controls/power-select value=value options=options}} `);
-  assert.equal(this.$().text().trim(), 'female');
+  assert.ok(this.$().text().trim().indexOf('female') !== -1);
 });
 
 test('Selecting a value updates the selected value', function(assert) {
@@ -27,7 +27,7 @@ test('Selecting a value updates the selected value', function(assert) {
   this.render(hbs`{{form-controls/power-select value=value options=options update=(action 'update')}}`);
   this.$('.ember-power-select-trigger').trigger('mousedown');
   $('.ember-power-select-option:contains(unknown)').trigger('mouseup');
-  assert.equal(this.$().text().trim(), 'unknown');
+  assert.ok(this.$().text().trim().indexOf('unknown') !== -1);
   assert.equal(this.get('value'), 'unknown');
 });
 
@@ -48,7 +48,7 @@ test('optionLabelPath', function(assert) {
   this.$('.ember-power-select-trigger').trigger('mousedown');
 
   assert.equal($('.ember-power-select-dropdown li').text().replace(/\s/g, ''), '12');
-  assert.equal(this.$().text().trim(), 2);
+  assert.ok(this.$().text().trim().indexOf('2') !== -1);
 });
 
 test('optionValuePath', function(assert) {

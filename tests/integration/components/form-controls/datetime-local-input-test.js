@@ -21,5 +21,5 @@ test('Updating a datetime input', function(assert) {
   this.render(hbs`{{form-controls/datetime-local-input value=value update=(action (mut value))}}`);
   this.$('input').val('2015-10-22T16:10').trigger('change');
   assert.ok(this.get('value') instanceof Date);
-  assert.equal(+this.get('value'), +(new Date('2015-10-22T16:10')));
+  assert.equal(+this.get('value'), +(new Date(2015, 9, 22, 16, 10)));
 });
