@@ -10,9 +10,14 @@ test('It renders a button', function(assert) {
   assert.equal(this.$('input[type="button"]').length, 1, 'Button is rendered');
 });
 
-test('It can have a label value', function(assert) {
+test('It can have a label value specified as a named param', function(assert) {
   this.render(hbs`{{form-controls/button value="Click Me"}}`);
-  assert.equal(this.$('input').val(), 'Click Me', 'Button has\'Click Me\' as label');
+  assert.equal(this.$('input').val(), 'Click Me', `Button has 'Click Me' as label`);
+});
+
+test('It can have a label value specified as a positional param', function(assert) {
+  this.render(hbs`{{form-controls/button "Click Me"}}`);
+  assert.equal(this.$('input').val(), 'Click Me', `Button has 'Click Me' as label`);
 });
 
 test('Clicking the button triggers the click action', function(assert) {

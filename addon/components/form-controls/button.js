@@ -1,5 +1,14 @@
 import BaseInputComponent from './base-input';
 
-export default BaseInputComponent.extend({
-  type:    'button'
+const Button = BaseInputComponent.extend({
+  type: 'button',
+
+  attributeBindings: ['value'],
+  value: ''
 });
+
+Button.reopenClass({
+  positionalParams: ['value']
+});
+
+export default Button;
