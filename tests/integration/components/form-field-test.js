@@ -2,6 +2,9 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { initialize as formForInitializer } from 'dummy/initializers/form-for-initializer';
+import config from 'dummy/config/environment';
+
 const { guidFor } = Ember;
 
 moduleForComponent('form-field', 'Integration | Component | {{form-field}}', {
@@ -9,6 +12,10 @@ moduleForComponent('form-field', 'Integration | Component | {{form-field}}', {
 
   setup() {
     this.set('object', { givenName: 'Albert' });
+  },
+
+  teardown() {
+    delete config['ember-form-for'];
   }
 });
 
@@ -177,14 +184,110 @@ test('It passes invalid to the control when errors are present', function(assert
   assert.equal(this.$('input').attr('aria-invalid'), 'true');
 });
 
-test('It adds an error class to the field when errors are present', function(assert) {
-  this.set('object.errors', { givenName: [{ message: 'can\'t be blank' }] });
+test('I can set and configure custom fieldClasses', function(assert) {
+  config['ember-form-for'] = {
+    fieldClasses: ['custom-class-1']
+  };
 
+  formForInitializer(this.container);
+
+  this.set('fieldClasses', ['custom-class-2']);
   this.render(hbs`
-    {{#form-field "givenName" object=object as |f|}}
+    {{#form-field "givenName" object=object class=fieldClasses as |f|}}
       {{f.control}}
     {{/form-field}}
   `);
 
-  assert.equal(this.$('.form-field').hasClass('form-field--errors'), true);
+  assert.equal(this.$('.custom-class-1').length, 1);
+  assert.equal(this.$('.custom-class-2').length, 1);
+});
+
+test('I can set and configure custom inputClasses', function(assert) {
+  config['ember-form-for'] = {
+    inputClasses: ['custom-class-1']
+  };
+
+  formForInitializer(this.container);
+
+  this.set('inputClasses', ['custom-class-2']);
+  this.render(hbs`
+    {{#form-field "givenName" object=object inputClasses=inputClasses as |f|}}
+      {{f.control}}
+    {{/form-field}}
+  `);
+
+  assert.ok(this.$('input').hasClass('custom-class-1'));
+  assert.ok(this.$('input').hasClass('custom-class-2'));
+});
+
+test('I can set and configure custom labelClasses', function(assert) {
+  config['ember-form-for'] = {
+    labelClasses: ['custom-class-1']
+  };
+
+  formForInitializer(this.container);
+
+  this.set('labelClasses', ['custom-class-2']);
+  this.render(hbs`
+    {{#form-field "givenName" object=object labelClasses=labelClasses as |f|}}
+      {{f.label}}
+    {{/form-field}}
+  `);
+
+  assert.ok(this.$('label').hasClass('custom-class-1'));
+  assert.ok(this.$('label').hasClass('custom-class-2'));
+});
+
+test('I can set and configure custom hintClasses', function(assert) {
+  config['ember-form-for'] = {
+    hintClasses: ['custom-class-1']
+  };
+
+  formForInitializer(this.container);
+
+  this.set('hintClasses', ['custom-class-2']);
+  this.render(hbs`
+    {{#form-field "givenName" object=object hint="test" hintClasses=hintClasses as |f|}}
+      {{f.hint}}
+    {{/form-field}}
+  `);
+
+  assert.ok(this.$('span').hasClass('custom-class-1'));
+  assert.ok(this.$('span').hasClass('custom-class-2'));
+});
+
+test('I can set custom errorClasses', function(assert) {
+  config['ember-form-for'] = {
+    errorClasses: ['custom-error-1']
+  };
+
+  formForInitializer(this.container);
+
+  this.set('object.errors', { givenName: [{ message: 'can\'t be blank' }] });
+  this.set('errorClasses', ['custom-error-2']);
+  this.render(hbs`
+    {{#form-field "givenName" object=object errorClasses=errorClasses as |f|}}
+      {{f.errors}}
+    {{/form-field}}
+  `);
+
+  assert.equal(this.$('.custom-error-1').length, 1);
+  assert.equal(this.$('.custom-error-2').length, 1);
+});
+
+test('I can set a custom fieldErrorClass', function(assert) {
+  config['ember-form-for'] = {
+    fieldErrorClass: ['has-errors-custom']
+  };
+
+  formForInitializer(this.container);
+
+  this.set('object.errors', { givenName: [{ message: 'can\'t be blank' }] });
+  this.render(hbs`
+    {{#form-field "givenName" object=object as |f|}}
+      {{f.errors}}
+    {{/form-field}}
+  `);
+
+  assert.equal(this.$('.has-errors-custom').length, 1);
 });

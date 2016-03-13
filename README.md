@@ -27,7 +27,7 @@ __NOTE__: This addon is a work in progress, a fuller readme will be added soon.
 
   {{f.email-field "emailAddress"}}
   {{f.text-field "userName"}}
-  {{f.password-field "password"}}
+  {{f.password-field "password" hint="Must be atleast six characters long and include a capital letter"}}
 
   {{f.checkbox-field "terms" label="I agree to the Terms of Service"}}
 
@@ -223,6 +223,47 @@ If you also want to be able to control the layout of the custom field:
     {{/ff.label}}
   {{/f.custom-field}}
 {{/form-for}}
+```
+
+### Custom CSS classes
+
+You can configure the following custom css classes:
++ `fieldClasses` - Classes on the field itself
++ `fieldErrorClass` - Adds this class when the field has errors
++ `errorClasses` - Errors on the field have these classes
++ `hintClasses` - The hint has these classes
++ `inputClasses` - The control has these classes
++ `labelClasses` - The label has these classes
++ `buttonClasses` - Adds these classes to buttons
++ `resetClasses` - Adds these classes to reset buttons
++ `submitClasses` - Adds these classes to submit buttons
+
+An example:
+
+```hbs
+{{#form-for object as |f|}}
+  {{f.text-field "firstName" fieldClasses=classesForField}}
+{{/form-for}}
+```
+
+You can also put custom classes in your `config/environment`:
+
+```js
+module.exports = function(environment) {
+ var ENV = {
+   'ember-form-for': {
+      buttonClasses: ['form-button'],
+      fieldClasses: ['form-field'],
+      fieldErrorClass: 'form-field--has-errors',
+      errorClasses: ['form-field--errors'],
+      hintClasses: ['form-field--hint'],
+      inputClasses: ['form-field--control'],
+      labelClasses: ['form-field--label'],
+      resetClasses: ['form-button--reset'],
+      submitClasses: ['form-button--submit']
+   }
+ }
+};
 ```
 
 ## Installation

@@ -17,12 +17,11 @@ const {
 const FormFieldComponent = Component.extend({
   layout,
 
-  classNames: ['form-field'],
-
-  classNameBindings: [
-    'propertyIsChanged:form-field--changed',
-    'propertyIsDifferent:form-field--different',
-    'hasErrors:form-field--errors'
+  concatenatedProperties: [
+    'inputClasses',
+    'labelClasses',
+    'hintClasses',
+    'errorClasses'
   ],
 
   control: 'form-controls/input',
@@ -36,9 +35,7 @@ const FormFieldComponent = Component.extend({
            typeof this.getAttr('propertyName') === 'string');
 
     mixin(this, {
-      propertyIsChanged:   readOnly(`object.${propertyName}IsChanged`),
-      propertyIsDifferent: readOnly(`object.${propertyName}IsDifferent`),
-      hasErrors:           notEmpty(`object.errors.${propertyName}`)
+      hasErrors: notEmpty(`object.errors.${propertyName}`)
     });
 
     this._super(...arguments);

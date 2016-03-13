@@ -1,13 +1,22 @@
 {{yield (hash
   labelText=labelText
-  label=(component 'form-label' labelText for=fieldId form=form)
-  errors=(component 'form-errors' errors=(get object.errors propertyName))
-  hint=(component 'form-hint' hint=hint id=fieldHintId)
+  label=(component 'form-label' labelText
+      for=fieldId
+      classNames=labelClasses
+      form=form)
+  errors=(component 'form-errors'
+      errors=(get object.errors propertyName)
+      errorClasses=errorClasses)
+  hint=(component 'form-hint'
+      hint=hint
+      hintClasses=hintClasses
+      id=fieldHintId)
   control=(component control (get object propertyName)
-            id=fieldId
-            name=fieldName
-            invalid=(if (get object.errors propertyName) true false)
-            describedBy=(if hint fieldHintId)
-            form=form
-            update=(action update object propertyName))
+      id=fieldId
+      name=fieldName
+      classNames=inputClasses
+      invalid=(if (get object.errors propertyName) true false)
+      describedBy=(if hint fieldHintId)
+      form=form
+      update=(action update object propertyName))
 )}}
