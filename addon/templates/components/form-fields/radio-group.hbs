@@ -1,6 +1,12 @@
 {{#form-field propertyName
     class="radio-group"
+    classNames=fieldClasses
+    errorClasses=errorClasses
+    hintClasses=hintClasses
+    inputClasses=inputClasses
+    labelClasses=labelClasses
     object=object
+    hint=hint
     form=form
     label=label as |f|}}
     {{form-label f.labelText required=required tagName="legend"}}

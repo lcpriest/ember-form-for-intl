@@ -1,8 +1,15 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { initialize as formForInitializer } from 'dummy/initializers/form-for-initializer';
+import config from 'dummy/config/environment';
+
 moduleForComponent('form-controls/button', 'Integration | Component | {{form-controls/button}}', {
-  integration: true
+  integration: true,
+
+  teardown() {
+    delete config['ember-form-for'];
+  }
 });
 
 test('It renders a button', function(assert) {
@@ -25,4 +32,18 @@ test('Clicking the button triggers the click action', function(assert) {
   this.on('click', () => assert.ok(true));
   this.render(hbs`{{form-controls/button click=(action 'click')}}`);
   this.$('input').trigger('click');
+});
+
+test('I can set and configure custom buttonClasses', function(assert) {
+  config['ember-form-for'] = {
+    buttonClasses: ['custom-class-1']
+  };
+
+  formForInitializer(this.container);
+
+  this.set('buttonClasses', ['custom-class-2']);
+  this.render(hbs`{{form-controls/button class=buttonClasses}}`);
+
+  assert.equal(this.$('.custom-class-1').length, 1);
+  assert.equal(this.$('.custom-class-2').length, 1);
 });

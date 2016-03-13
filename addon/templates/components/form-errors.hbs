@@ -1,5 +1,5 @@
 {{#if errors}}
-  <div class="form-field--errors">
+  <div class={{joinedErrorClasses}}>
     {{#each errors as |error|}}
       <div role="alert">{{error.message}}</div>
     {{/each}}
