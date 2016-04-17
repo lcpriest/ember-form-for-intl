@@ -26,16 +26,16 @@ const PowerSelectComponent = Ember.Component.extend({
   }),
 
   optionGroups: computed('options.[]', function() {
-    const groupLabelPath = get(this, 'groupLabelPath');
-    const options        = get(this, 'options');
-    const groups         = Ember.A();
+    let groupLabelPath = get(this, 'groupLabelPath');
+    let options        = get(this, 'options');
+    let groups         = Ember.A();
 
     if (!groupLabelPath) {
       return options;
     }
 
     options.forEach((item) => {
-      const label = get(item, groupLabelPath);
+      let label = get(item, groupLabelPath);
 
       if (label) {
         let group = groups.findBy('groupName', label);

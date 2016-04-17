@@ -6,7 +6,7 @@ import { humanize } from '../utils/strings';
 const {
   assert,
   computed,
-  computed: { notEmpty, readOnly },
+  computed: { notEmpty },
   get,
   guidFor,
   mixin,
