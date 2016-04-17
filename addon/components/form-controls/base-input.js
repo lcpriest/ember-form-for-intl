@@ -19,7 +19,7 @@ export default Ember.Component.extend({
     'name',
     'readonly',
     'required',
-    'required:aria-required',
+    'aria-required',
     'tabindex',
     'title',
     'type',
@@ -29,9 +29,7 @@ export default Ember.Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    let required = this.getAttr('required');
-    if (required !== true) {
-      set(this, 'required', false);
-    }
+    let required = this.get('required');
+    set(this, 'aria-required', !!required);
   }
 });
