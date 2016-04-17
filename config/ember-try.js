@@ -18,6 +18,14 @@ module.exports = {
       }
     },
     {
+      name: 'ember-2.5',
+      bower: {
+        dependencies: {
+          'ember': '~2.5.0'
+        }
+      }
+    },
+    {
       name: 'ember-beta',
 
       bower: {
