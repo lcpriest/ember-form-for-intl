@@ -6,8 +6,9 @@ import { humanize } from '../utils/strings';
 const {
   assert,
   computed,
-  computed: { notEmpty },
+  computed: { notEmpty, reads },
   get,
+  getWithDefault,
   guidFor,
   mixin,
   set,
@@ -24,7 +25,7 @@ const FormFieldComponent = Component.extend({
     'errorClasses'
   ],
 
-  control: 'form-controls/input',
+  control: 'one-way-input',
 
   didReceiveAttrs() {
     assert(`{{form-field}} requires an object property to be passed in`,
@@ -35,6 +36,7 @@ const FormFieldComponent = Component.extend({
            typeof this.getAttr('propertyName') === 'string');
 
     mixin(this, {
+      rawValue: reads(`object.${propertyName}`),
       hasErrors: notEmpty(`object.errors.${propertyName}`)
     });
 
@@ -66,6 +68,19 @@ const FormFieldComponent = Component.extend({
     return get(this, 'object.modelName') ||
            get(this, 'object.constructor.modelName') ||
            guidFor(get(this, 'object'));
+  },
+
+  value: computed('rawValue', function() {
+    let serializeValue = getWithDefault(this, 'serializeValue', (value) => value);
+    return serializeValue(get(this, 'rawValue'));
+  }),
+
+  actions: {
+    processUpdate(object, propertyName, value) {
+      let rawValue = get(this, 'rawValue');
+      let deserializeValue = getWithDefault(this, 'deserializeValue', (value) => value);
+      get(this, 'update')(object, propertyName, deserializeValue(value, rawValue));
+    }
   }
 });
 
