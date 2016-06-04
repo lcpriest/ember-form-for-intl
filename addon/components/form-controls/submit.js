@@ -1,5 +1,4 @@
 import ButtonComponent from './button';
-
 import { invokeAction } from 'ember-invoke-action';
 
 export default ButtonComponent.extend({
@@ -8,13 +7,5 @@ export default ButtonComponent.extend({
   click(e) {
     e.preventDefault();
     invokeAction(this, 'submit', ...arguments);
-  },
-
-  attributeBindings: [
-    'formaction',
-    'formenctype',
-    'formmethod',
-    'formtarget',
-    'formnovalidate'
-  ]
+  }
 });
