@@ -50,6 +50,7 @@
     "ember-one-way-controls": "0.8.2"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "http://martndemus.github.io/ember-form-for"
   }
 }
