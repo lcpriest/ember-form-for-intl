@@ -1,4 +1,3 @@
-import { skip } from 'qunit';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -97,7 +96,7 @@ test('Adding a custom field with template', function(assert) {
   assert.equal(this.$('form input').length, 1);
 });
 
-skip('It\'s helper can render a submit button', function(assert) {
+test('It\'s helper can render a submit button', function(assert) {
   assert.expect(1);
   this.on('submit', (object) => assert.equal(object, this.get('object')));
   this.render(hbs`
@@ -106,10 +105,10 @@ skip('It\'s helper can render a submit button', function(assert) {
     {{/form-for}}
   `);
 
-  this.$('input[type="submit"]').click();
+  this.$('button[type="submit"]').click();
 });
 
-skip('Submit calls object#save by default', function(assert) {
+test('Submit calls object#save by default', function(assert) {
   assert.expect(1);
   this.set('object', { save: () => assert.ok(true) });
 
@@ -119,10 +118,10 @@ skip('Submit calls object#save by default', function(assert) {
     {{/form-for}}
   `);
 
-  this.$('input[type="submit"]').click();
+  this.$('button[type="submit"]').click();
 });
 
-skip('It\'s helper can render a reset button', function(assert) {
+test('It\'s helper can render a reset button', function(assert) {
   assert.expect(1);
   this.on('reset', (object) => assert.equal(object, this.get('object')));
   this.render(hbs`
@@ -131,10 +130,10 @@ skip('It\'s helper can render a reset button', function(assert) {
     {{/form-for}}
   `);
 
-  this.$('input[type="reset"]').click();
+  this.$('button[type="reset"]').click();
 });
 
-skip('Reset calls object#rollback by default', function(assert) {
+test('Reset calls object#rollback by default', function(assert) {
   assert.expect(1);
   this.set('object', { rollback: () => assert.ok(true) });
 
@@ -144,5 +143,5 @@ skip('Reset calls object#rollback by default', function(assert) {
     {{/form-for}}
   `);
 
-  this.$('input[type="reset"]').click();
+  this.$('button[type="reset"]').click();
 });
