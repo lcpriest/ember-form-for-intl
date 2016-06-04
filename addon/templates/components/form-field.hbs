@@ -11,12 +11,13 @@
       hint=hint
       hintClasses=hintClasses
       id=fieldHintId)
-  control=(component control (get object propertyName)
+  control=(component control value
       id=fieldId
       name=fieldName
       classNames=inputClasses
       invalid=(if (get object.errors propertyName) true false)
-      describedBy=(if hint fieldHintId)
+      aria-invalid=(if (get object.errors propertyName) "true" "false")
+      aria-describedby=(if hint fieldHintId)
       form=form
-      update=(action update object propertyName))
+      update=(action "processUpdate" object propertyName))
 )}}

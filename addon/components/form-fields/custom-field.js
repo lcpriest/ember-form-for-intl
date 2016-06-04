@@ -7,7 +7,7 @@ const CustomFieldComponent = Ember.Component.extend({
   tagName: '',
   layout,
 
-  control: 'form-controls/input',
+  control: 'one-way-input',
 
   update(object, propertyName, value) {
     set(object, propertyName, value);

@@ -77,7 +77,7 @@ test('It passes an update action to the fields', function(assert) {
 test('Adding a custom field', function(assert) {
   this.render(hbs`
     {{#form-for object as |f|}}
-      {{f.custom-field "name" control="form-controls/search-input"}}
+      {{f.custom-field "name" control="one-way-search"}}
     {{/form-for}}
   `);
 

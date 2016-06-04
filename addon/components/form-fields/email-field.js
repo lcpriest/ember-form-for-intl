@@ -1,5 +1,5 @@
 import TextField from './text-field';
 
 export default TextField.extend({
-  control: 'form-controls/email-input'
+  control: 'one-way-email'
 });

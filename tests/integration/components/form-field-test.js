@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { initialize as formForInitializer } from 'dummy/initializers/form-for-initializer';
 import config from 'dummy/config/environment';
 
-const { guidFor } = Ember;
+const { guidFor, run } = Ember;
 
 moduleForComponent('form-field', 'Integration | Component | {{form-field}}', {
   integration: true,
@@ -47,7 +47,7 @@ test('It yields a text input as a default control', function(assert) {
 
 test('A custom form control can be specified', function(assert) {
   this.render(hbs`
-    {{#form-field "givenName" object=object control="form-controls/search-input" as |f|}}
+    {{#form-field "givenName" object=object control="one-way-search" as |f|}}
       {{f.control}}
     {{/form-field}}
   `);
@@ -290,4 +290,29 @@ test('I can set a custom fieldErrorClass', function(assert) {
   `);
 
   assert.equal(this.$('.has-errors-custom').length, 1);
+});
+
+test('I can pass a serializeValue function', function(assert) {
+  this.set('serializeValue', (value) => {
+    return value.toUpperCase();
+  });
+  this.render(hbs`
+    {{#form-field "givenName" object=object serializeValue=serializeValue as |f|}}
+      {{f.control}}
+    {{/form-field}}
+  `);
+  assert.equal(this.$('input').val(), 'ALBERT', 'Value is uppercased');
+});
+
+test('I can pass a deserializeValue function', function(assert) {
+  this.set('deserializeValue', (value) => {
+    return value.toUpperCase();
+  });
+  this.render(hbs`
+    {{#form-field "givenName" object=object deserializeValue=deserializeValue as |f|}}
+      {{f.control}}
+    {{/form-field}}
+  `);
+  run(() => this.$('input').val('John').trigger('change'));
+  assert.equal(this.get('object.givenName'), 'JOHN', 'Value is uppercased');
 });

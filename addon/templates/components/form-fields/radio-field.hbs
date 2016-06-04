@@ -9,11 +9,11 @@
     hint=hint
     form=form
     label=labelText
-    control="form-controls/radio"
+    control="one-way-radio"
     update=(action update) as |f|}}
   {{#f.label required=required}}
     {{f.control
-        value=value
+        option=value
         accesskey=accesskey
         autocomplete=autocomplete
         autofocus=autofocus

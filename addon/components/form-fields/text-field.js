@@ -7,7 +7,7 @@ const TextFieldComponent = Ember.Component.extend({
   tagName: '',
   layout,
 
-  control: 'form-controls/input',
+  control: 'one-way-text',
 
   update(object, propertyName, value) {
     set(object, propertyName, value);
