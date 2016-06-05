@@ -180,14 +180,14 @@ element around all options with equal `groupLabelPath` values.
 #### `{{f.submit}}`
 
 By default the submit button for a form will try to call `save` on the object
-passed in to the form. You can overide this by passing a custom `submit` action
+passed in to the form. You can override this by passing a custom `submit` action
 to the `{{form-for}}` component. The custom submit action will be passed the
 object the form describes.
 
 #### `{{f.reset}}`
 
 By default the reset button for a form will try to call `rollback` on the object
-passed in to the form. You can overide this by passing a custom `reset` action
+passed in to the form. You can override this by passing a custom `reset` action
 to the `{{form-for}}` component. The custom reset action will be passed the
 object the form describes.
 
