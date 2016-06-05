@@ -121,6 +121,26 @@ test('It can display errors', function(assert) {
   assert.ok(this.$().text().trim().indexOf('can\'t be blank') !== -1);
 });
 
+test('The errors messages are linked to the control by aria-describedby', function(assert) {
+  this.set('object.errors', {
+    givenName: [
+      { message: 'can\'t be blank' },
+      { message: 'is required' }
+    ]
+  });
+
+  this.render(hbs`
+    {{#form-field "givenName" object=object form="form123" as |f|}}
+      {{f.control}}
+      {{f.errors}}
+    {{/form-field}}
+  `);
+
+  assert.equal(this.$('[role="alert"]:eq(0)').attr('id'), 'form123_givenName_error-0');
+  assert.equal(this.$('[role="alert"]:eq(1)').attr('id'), 'form123_givenName_error-1');
+  assert.equal(this.$('input').attr('aria-describedby'), 'form123_givenName_error-0 form123_givenName_error-1');
+});
+
 test('By default changing the input updates the value', function(assert) {
   this.render(hbs`
     {{#form-field "givenName" object=object as |f|}}
