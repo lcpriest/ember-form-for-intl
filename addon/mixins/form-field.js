@@ -16,9 +16,9 @@ export default Mixin.create({
 
   didReceiveAttrs() {
     assert(`${this.instrumentDisplay} requires propertyName to be set`,
-      typeOf(this.getAttr('propertyName')) === 'string');
+      typeOf(get(this, 'propertyName')) === 'string');
 
-    let objectType = typeOf(this.getAttr('object'));
+    let objectType = typeOf(get(this, 'object'));
     assert(`${this.instrumentDisplay} requires object to be set`,
       objectType === 'object' || objectType === 'instance');
 
@@ -37,6 +37,6 @@ export default Mixin.create({
 
   _setupLabel() {
     set(this, 'label',
-      this.getAttr('label') || titlecase(this.getAttr('propertyName')));
+      get(this, 'label') || titlecase(get(this, 'propertyName')));
   }
 });
