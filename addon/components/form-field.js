@@ -12,6 +12,7 @@ const {
   guidFor,
   isPresent,
   mixin,
+  observer,
   set,
   Component
 } = Ember;
@@ -28,22 +29,31 @@ const FormFieldComponent = Component.extend({
 
   control: 'one-way-input',
 
+  init() {
+    this._super(...arguments);
+
+    this.propertyNameDidChange();
+  },
+
   didReceiveAttrs() {
+    this._super(...arguments);
+
     assert(`{{form-field}} requires an object property to be passed in`,
            get(this, 'object') != null);
 
-    let propertyName = get(this, 'propertyName');
     assert(`{{form-field}} requires the propertyName property to be set`,
            typeof get(this, 'propertyName') === 'string');
+  },
+
+  propertyNameDidChange: observer('propertyName', function() {
+    let propertyName = get(this, 'propertyName');
 
     mixin(this, {
       rawValue: reads(`object.${propertyName}`),
       errors: reads(`object.errors.${propertyName}`),
       hasErrors: notEmpty(`object.errors.${propertyName}`)
     });
-
-    this._super(...arguments);
-  },
+  }),
 
   update(object, propertyName, value) {
     set(object, propertyName, value);
