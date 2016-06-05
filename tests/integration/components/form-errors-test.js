@@ -28,3 +28,9 @@ test('Errors have role=alert', function(assert) {
   this.render(hbs`{{form-errors errors=errors}}`);
   assert.equal(this.$('div[role="alert"]').length, 2);
 });
+
+test('Each error has an id set', function(assert) {
+  this.render(hbs`{{form-errors errorId="test_error" errors=errors}}`);
+  assert.equal(this.$('div[role="alert"]:eq(0)').attr('id'), 'test_error-0');
+  assert.equal(this.$('div[role="alert"]:eq(1)').attr('id'), 'test_error-1');
+});

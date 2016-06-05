@@ -10,6 +10,7 @@ const {
   get,
   getWithDefault,
   guidFor,
+  isPresent,
   mixin,
   set,
   Component
@@ -37,6 +38,7 @@ const FormFieldComponent = Component.extend({
 
     mixin(this, {
       rawValue: reads(`object.${propertyName}`),
+      errors: reads(`object.errors.${propertyName}`),
       hasErrors: notEmpty(`object.errors.${propertyName}`)
     });
 
@@ -56,12 +58,27 @@ const FormFieldComponent = Component.extend({
     return `${baseId}_${get(this, 'propertyName')}`;
   }),
 
-  fieldHintId: computed('fieldId', function() {
-    return `${get(this, 'fieldId')}_hint`;
-  }),
-
   fieldName: computed('object', 'object.modelName', 'propertyName', function() {
     return `${this._nameForObject()}[${get(this, 'propertyName')}]`;
+  }),
+
+  describedByValue: computed('hint', 'errors.[]', 'fieldId', function() {
+    let ids = [];
+    let hint = get(this, 'hint');
+    let errors = get(this, 'errors');
+    let fieldId = get(this, 'fieldId');
+
+    if (isPresent(hint)) {
+      ids.push(`${fieldId}_hint`);
+    }
+
+    if (isPresent(errors)) {
+      errors.forEach((_, index) => {
+        ids.push(`${fieldId}_error-${index}`);
+      });
+    }
+
+    return ids.join(' ');
   }),
 
   _nameForObject() {
