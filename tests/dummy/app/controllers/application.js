@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { get, set, isEmpty } = Ember;
+const { set, isEmpty } = Ember;
 
 export default Ember.Controller.extend({
   submit() {
@@ -12,16 +12,12 @@ export default Ember.Controller.extend({
   },
 
   update(object, propertyName, value) {
+    let errors;
     if (isEmpty(value)) {
-      let errors = get(object, `errors.${propertyName}`);
-
-      if (errors === undefined) {
-        errors = Ember.A();
-        set(object, `errors.${propertyName}`, errors);
-      }
-
-      errors.pushObject({ message: "can't be blank" });
+      errors = [{ message: "can't be blank" }];
     }
+
+    set(object, `errors.${propertyName}`, errors);
 
     set(object, propertyName, value);
   },
