@@ -30,11 +30,11 @@ const FormFieldComponent = Component.extend({
 
   didReceiveAttrs() {
     assert(`{{form-field}} requires an object property to be passed in`,
-           this.getAttr('object') != null);
+           get(this, 'object') != null);
 
-    let propertyName = this.getAttr('propertyName');
+    let propertyName = get(this, 'propertyName');
     assert(`{{form-field}} requires the propertyName property to be set`,
-           typeof this.getAttr('propertyName') === 'string');
+           typeof get(this, 'propertyName') === 'string');
 
     mixin(this, {
       rawValue: reads(`object.${propertyName}`),
