@@ -145,3 +145,21 @@ test('Reset calls object#rollback by default', function(assert) {
 
   this.$('button[type="reset"]').click();
 });
+
+test('Form is focused when submit action is triggered and object contains errors', function(assert) {
+  this.set('object', {
+    save: () => undefined,
+    errors: {
+      foo: [{ message: 'error' }]
+    }
+  });
+
+  this.render(hbs`
+    {{#form-for object as |f|}}
+      {{f.submit}}
+    {{/form-for}}
+  `);
+
+  run(() => this.$('button[type="submit"]').click());
+  assert.equal(document.activeElement, this.$('form').get(0));
+});
