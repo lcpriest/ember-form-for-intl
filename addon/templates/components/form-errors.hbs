@@ -1,7 +1,13 @@
 {{#if errors}}
   <div class={{joinedErrorClasses}}>
     {{#each errors as |error index|}}
-      <div id={{concat errorId "-" index}} role="alert">{{error.message}}</div>
+      <div id={{concat errorId "-" index}} role="alert">
+        {{#if error.message}}
+          {{error.message}}
+        {{else}}
+          {{error}}
+        {{/if}}
+      </div>
     {{/each}}
   </div>
 {{/if}}

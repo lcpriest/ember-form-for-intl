@@ -19,6 +19,12 @@ test('It renders errors', function(assert) {
   assert.ok(text.indexOf('must be unique') !== -1);
 });
 
+test('Errors can optionally just be a string', function(assert) {
+  this.set('errors', ['must be unique']);
+  this.render(hbs`{{form-errors errors=errors}}`);
+  assert.ok(this.$().text().indexOf('must be unique') !== -1);
+});
+
 test('It renders nothing when no errors present', function(assert) {
   this.render(hbs`{{form-errors}}`);
   assert.equal(this.$('*').length, 0);
