@@ -3,6 +3,7 @@
   label=(component 'form-label' labelText
       for=fieldId
       classNames=labelClasses
+      required=required
       form=form)
   errors=(component 'form-errors'
       errorId=(concat fieldId "_error")
@@ -16,6 +17,7 @@
       id=fieldId
       name=fieldName
       classNames=inputClasses
+      required=required
       invalid=(if (get object.errors propertyName) true false)
       aria-invalid=(if (get object.errors propertyName) "true" "false")
       aria-describedby=describedByValue

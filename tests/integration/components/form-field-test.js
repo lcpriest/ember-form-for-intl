@@ -141,6 +141,18 @@ test('The errors messages are linked to the control by aria-describedby', functi
   assert.equal(this.$('input').attr('aria-describedby'), 'form123_givenName_error-0 form123_givenName_error-1');
 });
 
+test('Required is passed down to the control and hint', function(assert) {
+  this.render(hbs`
+    {{#form-field "givenName" object=object required=true as |f|}}
+      {{f.label}}
+      {{f.control}}
+    {{/form-field}}
+  `);
+
+  assert.equal(this.$('input').attr('required'), 'required', 'Required is set');
+  assert.ok(this.$('label').text().indexOf('*') !== -1, 'Star is added to label');
+});
+
 test('By default changing the input updates the value', function(assert) {
   this.render(hbs`
     {{#form-field "givenName" object=object as |f|}}

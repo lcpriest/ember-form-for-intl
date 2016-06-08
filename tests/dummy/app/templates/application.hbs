@@ -1,16 +1,16 @@
 <h2 id="title">Welcome to Ember Form For</h2>
 
 {{#form-for object update=(action update) reset=(action reset) submit=(action submit) as |f|}}
-  {{f.text-field "firstName"}}
-  {{f.text-field "lastName"}}
+  {{f.text-field "firstName" required=true}}
+  {{f.text-field "lastName" required=true}}
   {{f.select-field "gender" "unknown male female"}}
   {{f.date-field "birthDate"}}
 
-  {{f.email-field "emailAddress"}}
-  {{f.text-field "userName"}}
-  {{f.password-field "password" hint="Must be at least 6 characters long"}}
+  {{f.email-field "emailAddress" required=true}}
+  {{f.text-field "userName" required=true}}
+  {{f.password-field "password" hint="Must be at least 6 characters long" required=true}}
 
-  {{f.checkbox-field "terms" label="I agree to the Terms of Service"}}
+  {{f.checkbox-field "terms" label="I agree to the Terms of Service" required=true}}
 
   {{f.reset  "Clear form"}}
   {{f.submit "Create account"}}
