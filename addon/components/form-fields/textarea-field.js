@@ -7,6 +7,8 @@ const TextareaFieldComponent = Ember.Component.extend({
   tagName: '',
   layout,
 
+  control: 'one-way-textarea',
+
   update(object, propertyName, value) {
     set(object, propertyName, value);
   }

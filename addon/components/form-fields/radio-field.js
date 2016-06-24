@@ -9,6 +9,8 @@ const RadioFieldComponent = Ember.Component.extend({
   tagName: '',
   layout,
 
+  control: 'one-way-radio',
+
   update(object, propertyName, value) {
     set(object, propertyName, value);
   },

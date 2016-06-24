@@ -7,6 +7,8 @@ const CheckboxFieldComponent = Ember.Component.extend({
   tagName: '',
   layout,
 
+  control: 'one-way-checkbox',
+
   update(object, propertyName, value) {
     set(object, propertyName, value);
   }
