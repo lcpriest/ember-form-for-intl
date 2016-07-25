@@ -27,7 +27,7 @@ __NOTE__: This addon is a work in progress, a fuller readme will be added soon.
 
   {{f.email-field "emailAddress"}}
   {{f.text-field "userName"}}
-  {{f.password-field "password" hint="Must be atleast six characters long and include a capital letter"}}
+  {{f.password-field "password" hint="Must be at least six characters long and include a capital letter"}}
 
   {{f.checkbox-field "terms" label="I agree to the Terms of Service"}}
 
@@ -141,7 +141,7 @@ This will render a select element with three options: `unknown`, `male`,
 `female`. It will set the property `gender` of the object to the selected value.
 
 The second param to `{{select-field}}` should be the options of the select box.
-This may be either a space seperated string or an array of strings/objects.
+This may be either a space separated string or an array of strings/objects.
 
 Set the attribute `multiple` to true, to create a multiple select box.
 
@@ -197,7 +197,7 @@ The `{{button}}` is just a simple form button, you should pass it a `click` acti
 
 ### Custom fields
 
-If you want to use custom form controls, then your form control must atleast
+If you want to use custom form controls, then your form control must at least
 adhere to the following signature:
 
 ```hbs
