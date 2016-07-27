@@ -1,23 +1,23 @@
 import Ember from 'ember';
-import layout from '../templates/components/fieldset-for';
+import layout from '../templates/components/fields-for';
 
 const {
   Component,
   set
 } = Ember;
 
-const FieldsetForComponent = Component.extend({
+const FieldsForComponent = Component.extend({
   layout,
 
-  tagName: 'fieldset',
+  tagName: '',
 
   update(object, propertyName, value) {
     set(object, propertyName, value);
   }
 });
 
-FieldsetForComponent.reopenClass({
+FieldsForComponent.reopenClass({
   positionalParams: ['object']
 });
 
-export default FieldsetForComponent;
+export default FieldsForComponent;
