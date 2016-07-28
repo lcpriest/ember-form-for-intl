@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import config from '../config/environment';
+import FormForComponent from 'ember-form-for/components/form-for';
 import FormFieldComponent from 'ember-form-for/components/form-field';
 import ButtonComponent from 'ember-form-for/components/form-controls/button';
 import SubmitComponent from 'ember-form-for/components/form-controls/submit';
@@ -43,6 +44,10 @@ export function initialize(/* application */) {
 
   ResetComponent.reopen({
     classNames: formForConfig.resetClasses
+  });
+
+  FormForComponent.reopen({
+    customFormFields: formForConfig.customFormFields || []
   });
 }
 

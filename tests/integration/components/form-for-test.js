@@ -1,15 +1,54 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { initialize as formForInitializer } from 'dummy/initializers/form-for-initializer';
+import config from 'dummy/config/environment';
+import FormForComponent from 'ember-form-for/components/form-for';
 
-const { run } = Ember;
+const { Component, run } = Ember;
 
 moduleForComponent('form-for', 'Integration | Component | {{form-for}}', {
   integration: true,
 
-  setup() {
+  beforeEach() {
     this.set('object', { name: 'Peter' });
+  },
+
+  afterEach() {
+    delete config['ember-form-for'];
+    FormForComponent.reopen({
+      customFormFields: null
+    });
   }
+});
+
+test('I can register my custom for component', function(assert) {
+  config['ember-form-for'] = {
+    customFormFields: [
+      { name: 'my-custom-form-field', component: 'my-custom-form-field' }
+    ]
+  };
+
+  let component = Component.extend({
+    layout: hbs`
+      {{#form-field propertyName object=object label=label as |f|}}
+        {{f.label}}
+        {{f.control}}
+      {{/form-field}}
+    `
+  });
+  component.reopenClass({ positionalParams: ['propertyName'] });
+  this.register('component:my-custom-form-field', component);
+
+  formForInitializer(this.container);
+
+  this.render(hbs`
+    {{#form-for object as |f|}}
+      {{f.my-custom-form-field "name"}}
+    {{/form-for}}
+  `);
+
+  assert.equal(this.$('input').length, 1, 'Input for custom form field is shown');
 });
 
 test('It renders a form element', function(assert) {
