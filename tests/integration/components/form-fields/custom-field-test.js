@@ -1,5 +1,8 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+
+const { Component } = Ember;
 
 moduleForComponent('form-fields/custom-field', 'Integration | Component | {{form-fields/custom-field}}', {
   integration: true,
@@ -36,4 +39,15 @@ test('A custom update action can be passed', function(assert) {
   this.on('update', (object, propertyPath, value) => assert.equal(value, 'Mark'));
   this.render(hbs`{{form-fields/custom-field propertyName object=object update=(action 'update')}}`);
   this.$('input').val('Mark').trigger('change');
+});
+
+test('A custom component can be passed', function(assert) {
+  this.register('component:my-custom-form-field', Component.extend({
+    layout: hbs`<span>{{f.label}}</span><span>{{f.control}}</span>`
+  }));
+
+  this.render(hbs`{{form-fields/custom-field propertyName object=object component=(component "my-custom-form-field")}}`);
+
+  assert.equal(this.$('span label').length, 1, 'The label is rendered in a span');
+  assert.equal(this.$('span input').length, 1, 'The input is rendered in a span');
 });
