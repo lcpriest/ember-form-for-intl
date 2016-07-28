@@ -11,7 +11,9 @@
     label=label
     control=control
     update=(action update) as |f|}}
-  {{#if hasBlock}}
+  {{#if component}}
+    {{component component f=f}}
+  {{else if hasBlock}}
     {{yield f}}
   {{else}}
     {{f.label required=required}}

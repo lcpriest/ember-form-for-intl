@@ -225,6 +225,24 @@ If you also want to be able to control the layout of the custom field:
 {{/form-for}}
 ```
 
+Lastly you can instead pass a template component, let's say you have for example
+a `my-custom-form-field` component:
+
+```hbs
+{{f.label}}
+<div class="my-input-wrapper">
+  {{f.control}}
+</div>
+```
+
+You can then pass that component into `custom-field`:
+
+```hbs
+{{#form-for myObject as |f|}}
+  {{f.custom-field "myProperty" component="my-custom-form-field"}}
+{{/form-for}}
+```
+
 ### Custom CSS classes
 
 You can configure the following custom css classes:
