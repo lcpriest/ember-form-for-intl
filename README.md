@@ -84,3 +84,89 @@ Lastly there are the `{{f.reset}}` and `{{f.submit}}` button components. These
 are getting passed the `reset` and `submit` action from the `form-for` component
 respectively. By default the `reset` action will call the `rollback` function on
 the object, the `submit` action will call the `save` function on the object.
+
+## Reference
+
+### Table of Contents
+
+- [`form-for`](#form-for)
+
+
+## form-for
+
+The `{{form-for}}` component is the main component from this addon. All forms
+built with this addon should start with this component.
+
+### Syntax
+
+```hbs
+{{#form-for object
+    update=(action update)
+    submit=(action submit)
+    reset=(action reset)
+    as |f|
+}}
+  {{! block content }}
+{{/form-for}}
+```
+
+### Parameters
+
+#### object
+
+The object the form fields are for
+
+#### update
+
+This action is called every time a field is updated. It will pass three
+arguments: `object`, `property` and `value`. By default it will automatically
+update the property on the object with the new value.
+
+#### submit
+
+This action is called when a submit button is clicked. It will pass the object
+as first argument. By default it will call the `save` function on the object.
+
+#### reset
+
+This action is called when a reset button is clicked. It will pass the object
+as first argument. By default it will call the `rollback` function on the
+object.
+
+### Yields
+
+#### formControls
+
+An object containing form controls as [contextual components](http://emberjs.com/blog/2016/01/15/ember-2-3-released.html#toc_contextual-components).
+The form controls have the `object` and the `update` action pre-bound to it.
+
+The default form controls are:
+
+ - checkbox-field
+ - color-field
+ - date-field
+ - datetime-field
+ - datetime-local-field
+ - email-field
+ - file-field
+ - hidden-field
+ - month-field
+ - number-field
+ - password-field
+ - radio-field
+ - radio-group
+ - range-field
+ - search-field
+ - tel-field
+ - text-field
+ - textarea-field
+ - time-field
+ - url-field
+ - week-field
+ - custom-field
+
+Additionally these buttons are also available:
+
+ - button
+ - reset
+ - submit
