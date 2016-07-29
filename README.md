@@ -4,10 +4,12 @@
 [![Build Status](https://travis-ci.org/martndemus/ember-form-for.svg?branch=master)](https://travis-ci.org/martndemus/ember-form-for)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-form-for.svg)](http://emberobserver.com/addons/ember-form-for)
 
-This Ember.js addon will give you a simple way to build forms.
-* Supports all HTML5 input types, textarea and select
-* Is built with data down - actions up in mind
-* Has basic accessibility support
+This Ember.js addon will give you an easy way to build good forms:
+  * Supports all HTML5 input types, textarea and select, backed by [`ember-one-way-controls`](https://github.com/DockYard/ember-one-way-controls)
+  * Automatically adds labels, hints and errors to the form controls
+  * Is built with data down - actions up in mind
+  * Standard markup has built-in accessibility support
+  * Compatible with [`ember-changeset`](https://github.com/DockYard/ember-changeset)
 
 __WARNING__: This addon uses __contextual helpers__ and is therefore only
 compatible with apps built with Ember.js version __2.3__ and up.
