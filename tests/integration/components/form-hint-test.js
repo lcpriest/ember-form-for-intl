@@ -16,6 +16,6 @@ test('It doesn\'t renders a thing', function(assert) {
 });
 
 test('It can be passed an id', function(assert) {
-  this.render(hbs`{{form-hint hint="This is a hint" id="hint1"}}`);
+  this.render(hbs`{{form-hint hint="This is a hint" hintId="hint1"}}`);
   assert.equal(this.$('span#hint1').length, 1);
 });
