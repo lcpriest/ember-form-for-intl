@@ -25,3 +25,9 @@ test('Updating a date input', function(assert) {
   assert.ok(this.get('object.date') instanceof Date);
   assert.equal(+this.get('object.date'), +(new Date('2015-10-22')));
 });
+
+test('Can remove from date input', function(assert) {
+  this.render(hbs`{{form-fields/date-field propertyName object=object}}`);
+  this.$('input').val('').trigger('change');
+  assert.equal(this.get('object.date'), null);
+});

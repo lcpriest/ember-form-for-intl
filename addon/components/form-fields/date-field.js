@@ -13,10 +13,10 @@ export default TextField.extend({
   },
 
   deserializeValue(value) {
-    if (value != null) {
-      return new Date(value);
+    if (value === '' || value === null) {
+      return null;
     }
 
-    return value;
+    return new Date(value);
   }
 });
