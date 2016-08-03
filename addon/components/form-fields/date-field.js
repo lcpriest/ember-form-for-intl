@@ -1,5 +1,8 @@
+import Ember from 'ember';
 import TextField from './text-field';
 import { toDateString } from '../../utils/date';
+
+const { isEmpty } = Ember;
 
 export default TextField.extend({
   control: 'one-way-date',
@@ -13,7 +16,7 @@ export default TextField.extend({
   },
 
   deserializeValue(value) {
-    if (value === '' || value === null) {
+    if (isEmpty(value)) {
       return null;
     }
 
