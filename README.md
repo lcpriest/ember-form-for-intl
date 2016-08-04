@@ -85,12 +85,20 @@ are getting passed the `reset` and `submit` action from the `form-for` component
 respectively. By default the `reset` action will call the `rollback` function on
 the object, the `submit` action will call the `save` function on the object.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Quickstart Example](#quickstart-example)
+- [Table of Contents](#table-of-contents)
+- [Reference](#reference)
+  + [`form-for`](#form-for)
+  + [`form-fields`](#form-fields)
+- [Customizing/Extending](#customizing-extending)
+  + [Adding Class Names](#adding-class-names)
+  + [Using Custom Form Controls](#using-custom-form-controls)
+  + [Injecting Custom Fields Into Form For](#injecting-custom-fields-into-form-for)
+
 ## Reference
-
-### Table of Contents
-
-- [`form-for`](#form-for)
-
 
 ## form-for
 
