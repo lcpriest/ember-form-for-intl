@@ -5,6 +5,7 @@ const {
   get,
   isPresent,
   set,
+  run: { schedule },
   Component
 } = Ember;
 
@@ -14,7 +15,6 @@ const FormForComponent = Component.extend({
   tagName: 'form',
 
   attributeBindings: ['tabindex'],
-  tabindex: '-1',
 
   submit: (object) => object.save(),
   reset:  (object) => object.rollback(),
@@ -26,12 +26,14 @@ const FormForComponent = Component.extend({
   actions: {
     submit(object) {
       get(this, 'submit')(object);
+      set(this, 'tabindex', undefined);
 
       let errors = get(object, 'errors');
       if (errors) {
         for (let propertyName in errors) {
           if (isPresent(get(errors, propertyName))) {
-            this.$().focus();
+            set(this, 'tabindex', -1);
+            schedule('afterRender', () => this.$().focus());
             break;
           }
         }
