@@ -1,0 +1,40 @@
+{{#form-field propertyName
+    tagName="fieldset"
+    class="checkbox-group"
+    classNames=fieldClasses
+    disabled=disabled
+    errorClasses=errorClasses
+    hintClasses=hintClasses
+    inputClasses=inputClasses
+    labelClasses=labelClasses
+    object=object
+    hint=hint
+    form=form
+    label=label as |f|}}
+  {{form-label f.labelText required=required tagName="legend"}}
+
+  <ul>
+    {{#each options as |option|}}
+      {{#form-field propertyName
+          control="one-way-checkbox"
+          tagName="li"
+          object=object
+          update=(action "updateSelection" option)
+          as |fc|
+      }}
+        {{#fc.label}}
+          {{fc.control (one-way-select/contains (get object propertyName) option)
+              disabled=disabled
+              dir=dir
+              lang=lang
+              value=option
+          }}
+          {{form-for/humanize option}}
+        {{/fc.label}}
+      {{/form-field}}
+    {{/each}}
+  </ul>
+
+  {{f.errors}}
+  {{f.hint}}
+{{/form-field}}
