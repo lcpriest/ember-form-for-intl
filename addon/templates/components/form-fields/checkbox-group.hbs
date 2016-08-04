@@ -1,7 +1,8 @@
 {{#form-field propertyName
     tagName="fieldset"
-    class="radio-group"
+    class="checkbox-group"
     classNames=fieldClasses
+    disabled=disabled
     errorClasses=errorClasses
     hintClasses=hintClasses
     inputClasses=inputClasses
@@ -14,12 +15,23 @@
 
   <ul>
     {{#each options as |option|}}
-      {{form-fields/radio-field propertyName option
-          disabled=disabled
+      {{#form-field propertyName
+          control="one-way-checkbox"
           tagName="li"
           object=object
-          update=(action update)
+          update=(action "updateSelection" option)
+          as |fc|
       }}
+        {{#fc.label}}
+          {{fc.control (one-way-select/contains (get object propertyName) option)
+              disabled=disabled
+              dir=dir
+              lang=lang
+              value=option
+          }}
+          {{form-for/humanize option}}
+        {{/fc.label}}
+      {{/form-field}}
     {{/each}}
   </ul>
 

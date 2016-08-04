@@ -6,9 +6,8 @@ const {
 } = Ember;
 
 const RadioGroupComponent = Ember.Component.extend({
-  tagName: 'fieldset',
+  tagName: '',
   layout,
-  attributeBindings: ['disabled'],
 
   update() {
     set(...arguments);
