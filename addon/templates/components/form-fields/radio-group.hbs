@@ -1,4 +1,5 @@
 {{#form-field propertyName
+    tagName="fieldset"
     class="radio-group"
     classNames=fieldClasses
     errorClasses=errorClasses
@@ -9,18 +10,19 @@
     hint=hint
     form=form
     label=label as |f|}}
-    {{form-label f.labelText required=required tagName="legend"}}
+  {{form-label f.labelText required=required tagName="legend"}}
 
-    <ul>
-      {{#each options as |option|}}
-        {{form-fields/radio-field propertyName option
-            tagName="li"
-            object=object
-            update=(action update)
-        }}
-      {{/each}}
-    </ul>
+  <ul>
+    {{#each options as |option|}}
+      {{form-fields/radio-field propertyName option
+          disabled=disabled
+          tagName="li"
+          object=object
+          update=(action update)
+      }}
+    {{/each}}
+  </ul>
 
-    {{f.errors}}
-    {{f.hint}}
+  {{f.errors}}
+  {{f.hint}}
 {{/form-field}}
