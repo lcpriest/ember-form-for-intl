@@ -1,9 +1,18 @@
-<h2 id="title">Welcome to Ember Form For</h2>
+<h2 id="title">Register a new user</h2>
 
-{{#form-for object update=(action update) reset=(action reset) submit=(action submit) as |f|}}
+{{#form-for user update=(action update) reset=(action reset) submit=(action submit) as |f|}}
   {{f.text-field "firstName" required=true}}
   {{f.text-field "lastName" required=true}}
+
+  {{#fields-for user.address update=(action update) as |fa|}}
+    {{fa.text-field "address" required=true}}
+    {{fa.text-field "city" required=true}}
+    {{fa.text-field "state" required=true}}
+    {{fa.text-field "zipCode" required=true}}
+  {{/fields-for}}
+
   {{f.select-field "gender" "unknown male female"}}
+
   {{f.date-field "birthDate"}}
 
   {{f.email-field "emailAddress" required=true}}

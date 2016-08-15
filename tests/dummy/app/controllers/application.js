@@ -2,13 +2,24 @@ import Ember from 'ember';
 
 const { set, isEmpty } = Ember;
 
+function createEmptyObject(attrs) {
+  return Ember.Object.create(attrs, {
+    errors: {}
+  });
+}
+
+function blankUser() {
+  return createEmptyObject({ address: createEmptyObject() });
+}
+
 export default Ember.Controller.extend({
   submit() {
     window.alert('Saved!');
+    window.location.reload();
   },
 
   reset() {
-    set(this, 'object', Ember.Object.create({ errors: {} }));
+    set(this, 'user', blankUser());
   },
 
   update(object, propertyName, value) {
@@ -22,5 +33,5 @@ export default Ember.Controller.extend({
     set(object, propertyName, value);
   },
 
-  object: Ember.Object.create({ errors: {} })
+  user: blankUser()
 });
