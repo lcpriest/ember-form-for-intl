@@ -1,7 +1,7 @@
 # Ember Form For
 
 [![npm version](https://badge.fury.io/js/ember-form-for.svg)](http://badge.fury.io/js/ember-form-for)
-[![Build Status](https://travis-ci.org/martndemus/ember-form-for.svg?branch=master)](https://travis-ci.org/martndemus/ember-form-for)
+[![CircleCI](https://circleci.com/gh/DockYard/ember-form-for.svg?style=shield)](https://circleci.com/gh/DockYard/ember-form-for)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-form-for.svg)](http://emberobserver.com/addons/ember-form-for)
 
 This Ember.js addon will give you an easy way to build good forms:
