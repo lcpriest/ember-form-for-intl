@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { initialize as formForInitializer } from 'dummy/initializers/form-for-initializer';
+import { initialize as formForInitializer } from 'dummy/instance-initializers/form-for-initializer';
 import config from 'dummy/config/environment';
 
 const { Object: EmberObject, guidFor, run } = Ember;
@@ -363,9 +363,9 @@ test('I can set custom errorClasses', function(assert) {
   assert.equal(this.$('.custom-error-2').length, 1);
 });
 
-test('I can set a custom fieldErrorClass', function(assert) {
+test('I can set a custom fieldHasErrorClasses', function(assert) {
   config['ember-form-for'] = {
-    fieldErrorClass: ['has-errors-custom']
+    fieldHasErrorClasses: ['has-errors-custom']
   };
 
   formForInitializer(this.container);

@@ -2,7 +2,9 @@ import Ember from 'ember';
 import layout from '../templates/components/form-for';
 
 const {
+  computed: { reads },
   get,
+  inject: { service },
   isPresent,
   set,
   run: { schedule },
@@ -13,6 +15,9 @@ const FormForComponent = Component.extend({
   layout,
 
   tagName: 'form',
+
+  config: service('ember-form-for/config'),
+  customFormFields: reads('config.customFormFields'),
 
   attributeBindings: ['tabindex'],
 

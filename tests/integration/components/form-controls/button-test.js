@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { initialize as formForInitializer } from 'dummy/initializers/form-for-initializer';
+import { initialize as formForInitializer } from 'dummy/instance-initializers/form-for-initializer';
 import config from 'dummy/config/environment';
 
 moduleForComponent('form-controls/button', 'Integration | Component | {{form-controls/button}}', {

@@ -22,6 +22,9 @@ const FormFieldComponent = Component.extend({
   layout,
 
   i18n: service(),
+  config: service('ember-form-for/config'),
+
+  classNameBindings: [],
 
   concatenatedProperties: [
     'inputClasses',
@@ -34,6 +37,22 @@ const FormFieldComponent = Component.extend({
 
   init() {
     this._super(...arguments);
+
+    let fieldClasses = get(this, 'config.fieldClasses');
+    let classNames = get(this, 'classNames');
+    set(this, 'classNames', (classNames || []).concat(fieldClasses));
+
+    get(this, 'classNameBindings').push(`hasErrors:${get(this, 'config.fieldHasErrorClasses')}`);
+
+    [
+      'inputClasses',
+      'labelClasses',
+      'hintClasses',
+      'errorClasses'
+    ].forEach((type) => {
+      set(this, type, (get(this, type) || []).concat(get(this, `config.${type}`)));
+    });
+
     this.propertyNameDidChange();
   },
 
@@ -73,9 +92,9 @@ const FormFieldComponent = Component.extend({
 
   modelName: or('object.modelName', 'object.constructor.modelName'),
 
-  labelI18nKey: computed('propertyName', function() {
+  labelI18nKey: computed('config.i18nKeyPrefix', 'modelName', 'propertyName', function() {
     return [
-      get(this, 'i18nKeyPrefix'),
+      get(this, 'config.i18nKeyPrefix'),
       get(this, 'modelName'),
       get(this, 'propertyName')
     ].filter((x) => !!x)
