@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import { initialize as formForInitializer } from 'dummy/initializers/form-for-initializer';
+import { initialize as formForInitializer } from 'dummy/instance-initializers/form-for-initializer';
 import config from 'dummy/config/environment';
 import FormForComponent from 'ember-form-for/components/form-for';
 
