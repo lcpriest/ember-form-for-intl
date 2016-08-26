@@ -31,7 +31,8 @@ export function initialize(/* application */) {
     errorClasses: formForConfig.errorClasses,
     hintClasses: formForConfig.hintClasses,
     inputClasses: formForConfig.inputClasses,
-    labelClasses: formForConfig.labelClasses
+    labelClasses: formForConfig.labelClasses,
+    i18nKeyPrefix: formForConfig.i18nKeyPrefix
   });
 
   ButtonComponent.reopen({

@@ -10,6 +10,7 @@ This Ember.js addon will give you an easy way to build good forms:
   * Is built with data down - actions up in mind
   * Standard markup has built-in accessibility support
   * Compatible with [`ember-changeset`](https://github.com/DockYard/ember-changeset)
+  * Compatible with [`ember-i18n`](https://github.com/jamesarosen/ember-i18n)
 
 __WARNING__: This addon uses __contextual helpers__ and is therefore only
 compatible with apps built with Ember.js version __2.3__ and up.
@@ -93,6 +94,8 @@ the object, the `submit` action will call the `save` function on the object.
 - [Reference](#reference)
   + [`form-for`](#form-for)
   + [`form-fields`](#form-fields)
+- [Integrations](#integrations)
+  + [`i18n`](#i18n)
 - [Customizing/Extending](#customizing-extending)
   + [Adding Class Names](#adding-class-names)
   + [Using Custom Form Controls](#using-custom-form-controls)
@@ -178,3 +181,24 @@ Additionally these buttons are also available:
  - button
  - reset
  - submit
+
+## Integrations
+
+## i18n
+
+Ember Form For has out of the box support for
+[ember-i18n](https://github.com/jamesarosen/ember-i18n). If your project has
+this addon installed, it will automatically lookup the translation with the
+following key algorithm:
+
+  - By default it will use `propertyName` as key. (e.g. `'firstName'`).
+  - If `modelName` is set, or deducable from the object, then it will be
+    prefixed to the key. (e.g. `'user.firstName'`)
+  - If `i18nKeyPrefix` is set on the config, then this will be prefixed before
+    `modelName` and `propertyName`. (e.g. `'my.arbitrary.key.user.firstName'`)
+
+### Polyfilling i18n
+
+The project does not have a hard dependency on ember-i18n, you can easily
+drop-in your own implementation. All you need is a service called `i18n` that
+has a function called `t`.

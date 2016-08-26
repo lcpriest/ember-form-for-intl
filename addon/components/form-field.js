@@ -6,10 +6,11 @@ import { humanize } from '../utils/strings';
 const {
   assert,
   computed,
-  computed: { notEmpty, reads },
+  computed: { notEmpty, or, reads },
   get,
   getWithDefault,
   guidFor,
+  inject: { service },
   isPresent,
   mixin,
   observer,
@@ -19,6 +20,8 @@ const {
 
 const FormFieldComponent = Component.extend({
   layout,
+
+  i18n: service(),
 
   concatenatedProperties: [
     'inputClasses',
@@ -31,7 +34,6 @@ const FormFieldComponent = Component.extend({
 
   init() {
     this._super(...arguments);
-
     this.propertyNameDidChange();
   },
 
@@ -60,7 +62,24 @@ const FormFieldComponent = Component.extend({
   },
 
   labelText: computed('propertyName', 'label', function() {
-    return get(this, 'label') || humanize(get(this, 'propertyName'));
+    let i18n = get(this, 'i18n');
+
+    if (isPresent(i18n)) {
+      return i18n.t(get(this, 'labelI18nKey'));
+    } else {
+      return get(this, 'label') || humanize(get(this, 'propertyName'));
+    }
+  }),
+
+  modelName: or('object.modelName', 'object.constructor.modelName'),
+
+  labelI18nKey: computed('propertyName', function() {
+    return [
+      get(this, 'i18nKeyPrefix'),
+      get(this, 'modelName'),
+      get(this, 'propertyName')
+    ].filter((x) => !!x)
+     .join('.');
   }),
 
   fieldId: computed('object', 'form', 'propertyName', function() {
@@ -68,7 +87,7 @@ const FormFieldComponent = Component.extend({
     return `${baseId}_${get(this, 'propertyName')}`;
   }),
 
-  fieldName: computed('object', 'object.modelName', 'propertyName', function() {
+  fieldName: computed('object', 'modelName', 'propertyName', function() {
     return `${this._nameForObject()}[${get(this, 'propertyName')}]`;
   }),
 
@@ -92,8 +111,7 @@ const FormFieldComponent = Component.extend({
   }),
 
   _nameForObject() {
-    return get(this, 'object.modelName') ||
-           get(this, 'object.constructor.modelName') ||
+    return get(this, 'modelName') ||
            guidFor(get(this, 'object'));
   },
 
