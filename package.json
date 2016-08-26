@@ -52,9 +52,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://martndemus.github.io/ember-form-for",
-    "versionCompatibility": {
-       "ember": ">=2.3.0 <=3.0.0"
-    }
+    "demoURL": "http://martndemus.github.io/ember-form-for"
   }
 }
