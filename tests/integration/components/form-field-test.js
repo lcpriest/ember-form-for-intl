@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { initialize as formForInitializer } from 'dummy/initializers/form-for-initializer';
 import config from 'dummy/config/environment';
 
-const { guidFor, run } = Ember;
+const { Object: EmberObject, guidFor, run } = Ember;
 
 moduleForComponent('form-field', 'Integration | Component | {{form-field}}', {
   integration: true,
@@ -36,6 +36,62 @@ test('It adds a label based on propertyName', function(assert) {
     {{#form-field "givenName" object=object as |f|}}{{f.label}}{{/form-field}}
   `);
   assert.equal(this.$('label').text().trim(), 'Given name');
+});
+
+test('If the i18n service is available, compute the label from there', function(assert) {
+  assert.expect(2);
+  this.registry.register('service:i18n', EmberObject.extend({
+    t(key) {
+      assert.equal(key, 'givenName');
+      return 'Your name';
+    }
+  }));
+
+  this.render(hbs`
+    {{#form-field "givenName" object=object as |f|}}{{f.label}}{{/form-field}}
+  `);
+
+  assert.equal(this.$('label').text().trim(), 'Your name');
+});
+
+test('When modelName is present, use it for i18n labels', function(assert) {
+  assert.expect(2);
+  this.registry.register('service:i18n', EmberObject.extend({
+    t(key) {
+      assert.equal(key, 'user.givenName');
+      return 'Your name';
+    }
+  }));
+
+  this.set('object.modelName', 'user');
+
+  this.render(hbs`
+    {{#form-field "givenName" object=object as |f|}}{{f.label}}{{/form-field}}
+  `);
+
+  assert.equal(this.$('label').text().trim(), 'Your name');
+});
+
+test('An arbitrary prefix can be used for the i18n key', function(assert) {
+  config['ember-form-for'] = {
+    i18nKeyPrefix: 'arbitrary'
+  };
+
+  formForInitializer(this.container);
+
+  assert.expect(2);
+  this.registry.register('service:i18n', EmberObject.extend({
+    t(key) {
+      assert.equal(key, 'arbitrary.givenName');
+      return 'Your name';
+    }
+  }));
+
+  this.render(hbs`
+    {{#form-field "givenName" object=object as |f|}}{{f.label}}{{/form-field}}
+  `);
+
+  assert.equal(this.$('label').text().trim(), 'Your name');
 });
 
 test('It yields a text input as a default control', function(assert) {
