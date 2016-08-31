@@ -182,6 +182,49 @@ Additionally these buttons are also available:
  - reset
  - submit
 
+## form-fields
+
+The form-field components are yielded from the `{{form-for}}` component. All the
+available form-field components are described in the [`form-for`](#formControls) section.
+
+### Syntax
+
+```hbs
+{{#form-for object as |f|}}
+  {{f.text-field "propertyName"}}
+{{/form-for}}
+```
+
+### Parameters
+
+#### object
+
+The object the form field is for. By default `object` is the object passed to
+the `{{form-for}}` component, but you can override it if you want to.
+
+#### propertyName
+
+This tells the form field which property of the object to use as value. Can be
+passed as the first positional param.
+
+#### update
+
+The action that handles updates to the value of the form-field by the user. By
+default this action is passed down from the `{{form-for}}` component.
+
+#### label
+
+The text value for the label of the form-field. By default is inferred from the
+`propertyName` attribute or lookup up from the i18n service if available.
+
+#### hint
+
+Text to be displayed along the control as a hint to the user.
+
+#### required
+
+If set to `true` it will mark the field as required.
+
 ## Integrations
 
 ## i18n
