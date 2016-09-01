@@ -1,5 +1,6 @@
 # Ember Form For
 
+![Download count all time](https://img.shields.io/npm/dt/ember-form-for.svg)
 [![npm version](https://badge.fury.io/js/ember-form-for.svg)](http://badge.fury.io/js/ember-form-for)
 [![CircleCI](https://circleci.com/gh/martndemus/ember-form-for.svg?style=shield)](https://circleci.com/gh/martndemus/ember-form-for)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-form-for.svg)](http://emberobserver.com/addons/ember-form-for)
