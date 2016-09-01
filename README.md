@@ -96,10 +96,10 @@ the object, the `submit` action will call the `save` function on the object.
   + [`form-fields`](#form-fields)
 - [Integrations](#integrations)
   + [`i18n`](#i18n)
-- [Customizing/Extending](#customizing-extending)
-  + [Adding Class Names](#adding-class-names)
-  + [Using Custom Form Controls](#using-custom-form-controls)
-  + [Injecting Custom Fields Into Form For](#injecting-custom-fields-into-form-for)
+- [Customizing/Extending](#customizing-extending) (Coming Soon™)
+  + [Adding Class Names](#adding-class-names) (Coming Soon™)
+  + [Using Custom Form Controls](#using-custom-form-controls) (Coming Soon™)
+  + [Injecting Custom Fields Into Form For](#injecting-custom-fields-into-form-for) (Coming Soon™)
 
 ## Reference
 
