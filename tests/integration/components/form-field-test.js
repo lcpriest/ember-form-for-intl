@@ -2,20 +2,13 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { initialize as formForInitializer } from 'dummy/instance-initializers/form-for-initializer';
-import config from 'dummy/config/environment';
-
 const { Object: EmberObject, guidFor, run } = Ember;
 
 moduleForComponent('form-field', 'Integration | Component | {{form-field}}', {
   integration: true,
 
-  setup() {
+  beforeEach() {
     this.set('object', { givenName: 'Albert' });
-  },
-
-  teardown() {
-    delete config['ember-form-for'];
   }
 });
 
@@ -73,11 +66,9 @@ test('When modelName is present, use it for i18n labels', function(assert) {
 });
 
 test('An arbitrary prefix can be used for the i18n key', function(assert) {
-  config['ember-form-for'] = {
+  this.register('service:ember-form-for/config', Ember.Service.extend({
     i18nKeyPrefix: 'arbitrary'
-  };
-
-  formForInitializer(this.container);
+  }));
 
   assert.expect(2);
   this.registry.register('service:i18n', EmberObject.extend({
@@ -178,11 +169,9 @@ test('It can display errors', function(assert) {
 });
 
 test('I can configure on which property errors are found', function(assert) {
-  config['ember-form-for'] = {
+  this.register('service:ember-form-for/config', Ember.Service.extend({
     errorsProperty: ['error']
-  };
-
-  formForInitializer(this.container);
+  }));
 
   this.set('object.error', { givenName: [{ message: 'can\'t be blank' }] });
 
@@ -291,11 +280,9 @@ test('It passes invalid to the control when errors are present', function(assert
 });
 
 test('I can set and configure custom fieldClasses', function(assert) {
-  config['ember-form-for'] = {
+  this.register('service:ember-form-for/config', Ember.Service.extend({
     fieldClasses: ['custom-class-1']
-  };
-
-  formForInitializer(this.container);
+  }));
 
   this.set('fieldClasses', ['custom-class-2']);
   this.render(hbs`
@@ -309,11 +296,9 @@ test('I can set and configure custom fieldClasses', function(assert) {
 });
 
 test('I can set and configure custom inputClasses', function(assert) {
-  config['ember-form-for'] = {
+  this.register('service:ember-form-for/config', Ember.Service.extend({
     inputClasses: ['custom-class-1']
-  };
-
-  formForInitializer(this.container);
+  }));
 
   this.set('inputClasses', ['custom-class-2']);
   this.render(hbs`
@@ -327,11 +312,9 @@ test('I can set and configure custom inputClasses', function(assert) {
 });
 
 test('I can set and configure custom labelClasses', function(assert) {
-  config['ember-form-for'] = {
+  this.register('service:ember-form-for/config', Ember.Service.extend({
     labelClasses: ['custom-class-1']
-  };
-
-  formForInitializer(this.container);
+  }));
 
   this.set('labelClasses', ['custom-class-2']);
   this.render(hbs`
@@ -345,11 +328,9 @@ test('I can set and configure custom labelClasses', function(assert) {
 });
 
 test('I can set and configure custom hintClasses', function(assert) {
-  config['ember-form-for'] = {
+  this.register('service:ember-form-for/config', Ember.Service.extend({
     hintClasses: ['custom-class-1']
-  };
-
-  formForInitializer(this.container);
+  }));
 
   this.set('hintClasses', ['custom-class-2']);
   this.render(hbs`
@@ -363,11 +344,9 @@ test('I can set and configure custom hintClasses', function(assert) {
 });
 
 test('I can set custom errorClasses', function(assert) {
-  config['ember-form-for'] = {
+  this.register('service:ember-form-for/config', Ember.Service.extend({
     errorClasses: ['custom-error-1']
-  };
-
-  formForInitializer(this.container);
+  }));
 
   this.set('object.errors', { givenName: [{ message: 'can\'t be blank' }] });
   this.set('errorClasses', ['custom-error-2']);
@@ -382,11 +361,9 @@ test('I can set custom errorClasses', function(assert) {
 });
 
 test('I can set a custom fieldHasErrorClasses', function(assert) {
-  config['ember-form-for'] = {
+  this.register('service:ember-form-for/config', Ember.Service.extend({
     fieldHasErrorClasses: ['has-errors-custom']
-  };
-
-  formForInitializer(this.container);
+  }));
 
   this.set('object.errors', { givenName: [{ message: 'can\'t be blank' }] });
   this.render(hbs`
