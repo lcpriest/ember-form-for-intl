@@ -24,6 +24,9 @@ const FormFieldComponent = Component.extend({
   i18n: service(),
   config: service('ember-form-for/config'),
 
+  _defaultErrorsProperty: 'errors',
+  errorsProperty: or('config.errorsProperty', '_defaultErrorsProperty'),
+
   classNameBindings: [],
 
   concatenatedProperties: [
@@ -66,13 +69,14 @@ const FormFieldComponent = Component.extend({
            typeof get(this, 'propertyName') === 'string');
   },
 
-  propertyNameDidChange: observer('propertyName', function() {
+  propertyNameDidChange: observer('propertyName', 'errorsProperty', function() {
     let propertyName = get(this, 'propertyName');
+    let errorsProperty = get(this, 'errorsProperty');
 
     mixin(this, {
       rawValue: reads(`object.${propertyName}`),
-      errors: reads(`object.errors.${propertyName}`),
-      hasErrors: notEmpty(`object.errors.${propertyName}`)
+      errors: reads(`object.${errorsProperty}.${propertyName}`),
+      hasErrors: notEmpty(`object.${errorsProperty}.${propertyName}`)
     });
   }),
 

@@ -177,6 +177,24 @@ test('It can display errors', function(assert) {
   assert.ok(this.$().text().trim().indexOf('can\'t be blank') !== -1);
 });
 
+test('I can configure on which property errors are found', function(assert) {
+  config['ember-form-for'] = {
+    errorsProperty: ['error']
+  };
+
+  formForInitializer(this.container);
+
+  this.set('object.error', { givenName: [{ message: 'can\'t be blank' }] });
+
+  this.render(hbs`
+    {{#form-field "givenName" object=object form="form123" as |f|}}
+      {{f.errors}}
+    {{/form-field}}
+  `);
+
+  assert.ok(this.$().text().trim().indexOf('can\'t be blank') !== -1);
+});
+
 test('The errors messages are linked to the control by aria-describedby', function(assert) {
   this.set('object.errors', {
     givenName: [
