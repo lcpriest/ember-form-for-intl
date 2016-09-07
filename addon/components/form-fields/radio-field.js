@@ -6,6 +6,7 @@ import { humanize } from '../../utils/strings';
 const {
   String: { dasherize },
   computed,
+  computed: { or },
   get,
   inject: { service },
   isPresent,
@@ -20,6 +21,8 @@ const RadioFieldComponent = Ember.Component.extend({
 
   i18n: service(),
   config: service('ember-form-for/config'),
+
+  modelName: or('object.modelName', 'object.constructor.modelName'),
 
   update(object, propertyName, value) {
     set(object, propertyName, value);
