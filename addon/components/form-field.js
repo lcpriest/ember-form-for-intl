@@ -15,7 +15,8 @@ const {
   mixin,
   observer,
   set,
-  Component
+  Component,
+  String: { dasherize }
 } = Ember;
 
 const FormFieldComponent = Component.extend({
@@ -99,8 +100,8 @@ const FormFieldComponent = Component.extend({
   labelI18nKey: computed('config.i18nKeyPrefix', 'modelName', 'propertyName', function() {
     return [
       get(this, 'config.i18nKeyPrefix'),
-      get(this, 'modelName'),
-      get(this, 'propertyName')
+      dasherize(get(this, 'modelName') || ''),
+      dasherize(get(this, 'propertyName') || '')
     ].filter((x) => !!x)
      .join('.');
   }),
