@@ -35,7 +35,7 @@ test('If the i18n service is available, compute the label from there', function(
   assert.expect(2);
   this.registry.register('service:i18n', EmberObject.extend({
     t(key) {
-      assert.equal(key, 'givenName');
+      assert.equal(key, 'given-name');
       return 'Your name';
     }
   }));
@@ -51,7 +51,7 @@ test('When modelName is present, use it for i18n labels', function(assert) {
   assert.expect(2);
   this.registry.register('service:i18n', EmberObject.extend({
     t(key) {
-      assert.equal(key, 'user.givenName');
+      assert.equal(key, 'user.given-name');
       return 'Your name';
     }
   }));
@@ -73,7 +73,7 @@ test('An arbitrary prefix can be used for the i18n key', function(assert) {
   assert.expect(2);
   this.registry.register('service:i18n', EmberObject.extend({
     t(key) {
-      assert.equal(key, 'arbitrary.givenName');
+      assert.equal(key, 'arbitrary.given-name');
       return 'Your name';
     }
   }));
