@@ -87,11 +87,14 @@ const FormFieldComponent = Component.extend({
 
   labelText: computed('propertyName', 'label', function() {
     let i18n = get(this, 'i18n');
+    let label = get(this, 'label');
 
-    if (isPresent(i18n)) {
+    if (isPresent(label)) {
+      return label;
+    } else if (isPresent(i18n)) {
       return i18n.t(get(this, 'labelI18nKey'));
     } else {
-      return get(this, 'label') || humanize(get(this, 'propertyName'));
+      return humanize(get(this, 'propertyName'));
     }
   }),
 
