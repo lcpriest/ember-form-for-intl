@@ -6,7 +6,7 @@ const { merge, set } = Ember;
 const DEFAULT_CONFIG = {
   buttonClasses: ['form-button'],
   fieldClasses: ['form-field'],
-  fieldErrorClass: 'form-field--has-errors',
+  fieldHasErrorClasses: ['form-field--has-errors'],
   errorClasses: ['form-field--errors'],
   hintClasses: ['form-field--hint'],
   inputClasses: ['form-field--control'],
