@@ -202,3 +202,15 @@ test('Form is focused when submit action is triggered and object contains errors
   run(() => this.$('button[type="submit"]').click());
   assert.equal(document.activeElement, this.$('form').get(0));
 });
+
+test('I can set and configure custom formClasses', function(assert) {
+  config['ember-form-for'] = {
+    formClasses: ['custom-form-class-1']
+  };
+
+  formForInitializer(this.container);
+
+  this.render(hbs`{{form-for}}`);
+
+  assert.equal(this.$('.custom-form-class-1').length, 1);
+});
