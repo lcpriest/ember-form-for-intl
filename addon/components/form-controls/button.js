@@ -18,7 +18,8 @@ const Button = Component.extend(DynamicAttributeBindings, {
   init() {
     this._super(...arguments);
 
-    let buttonClasses = get(this, 'config.buttonClasses');
+    let type = get(this, 'type');
+    let buttonClasses = get(this, `config.${type}Classes`);
     let classNames = get(this, 'classNames');
     set(this, 'classNames', (classNames || []).concat(buttonClasses));
   }
