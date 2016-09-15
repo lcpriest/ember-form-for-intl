@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-const { run } = Ember;
+const { Object: EmberObject, run } = Ember;
 
 moduleForComponent('form-fields/checkbox-group', 'Integration | Component | {{form-fields/checkbox-group}}', {
   integration: true,
@@ -51,4 +51,18 @@ test('Clicking a checkbox updates the property', function(assert) {
 
   assert.equal(this.$('input[type="checkbox"]:checked').length, 1);
   assert.deepEqual(this.get('object.preferences'), ['cats']);
+});
+
+test('The labels are computed from the i18n service if available', function(assert) {
+  assert.expect(2);
+  this.registry.register('service:i18n', EmberObject.extend({
+    t(key) {
+      return key;
+    }
+  }));
+
+  this.render(hbs`{{form-fields/checkbox-group "preferences" object=object options=options}}`);
+
+  assert.equal(this.$('label').eq(0).text().trim(), 'preferences.dogs');
+  assert.equal(this.$('label').eq(1).text().trim(), 'preferences.cats');
 });

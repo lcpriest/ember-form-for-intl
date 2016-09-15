@@ -15,23 +15,16 @@
 
   <ul>
     {{#each options as |option|}}
-      {{#form-field propertyName
-          control="one-way-checkbox"
-          tagName="li"
+      {{form-fields/checkbox-group/option
           object=object
+          propertyName=propertyName
+          option=option
           update=(action "updateSelection" option)
-          as |fc|
+          disabled=disabled
+          dir=dir
+          lang=lang
+          value=option
       }}
-        {{#fc.label}}
-          {{fc.control (one-way-select/contains (get object propertyName) option)
-              disabled=disabled
-              dir=dir
-              lang=lang
-              value=option
-          }}
-          {{form-for/humanize option}}
-        {{/fc.label}}
-      {{/form-field}}
     {{/each}}
   </ul>
 
