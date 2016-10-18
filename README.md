@@ -10,8 +10,8 @@ This Ember.js addon will give you an easy way to build good forms:
   * Automatically adds labels, hints and errors to the form controls
   * Is built with data down - actions up in mind
   * Standard markup has built-in accessibility support
-  * Compatible with [`ember-changeset`](https://github.com/DockYard/ember-changeset)
-  * Compatible with [`ember-i18n`](https://github.com/jamesarosen/ember-i18n)
+  * Compatible with [`ember-changeset`](https://github.com/DockYard/ember-changeset) (see [instructions](#ember-changeset))
+  * Compatible with [`ember-i18n`](https://github.com/jamesarosen/ember-i18n) (see [instructions](#i18n))
 
 __WARNING__: This addon uses __contextual helpers__ and is therefore only
 compatible with apps built with Ember.js version __2.3__ and up.
