@@ -51,18 +51,6 @@ module.exports = {
           "ember": "canary"
         }
       }
-    },
-    {
-      name: 'ember-alpha',
-      allowedToFail: true,
-      bower: {
-        dependencies: {
-          "ember": "alpha"
-        },
-        resolutions: {
-          "ember": "alpha"
-        }
-      }
     }
   ]
 };
