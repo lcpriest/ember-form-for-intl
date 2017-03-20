@@ -20,7 +20,6 @@ const RadioFieldComponent = Component.extend({
 
   control: 'one-way-radio',
 
-  i18n: service(),
   config: service('ember-form-for/config'),
 
   modelName: or('object.modelName', 'object.constructor.modelName'),

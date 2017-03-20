@@ -23,7 +23,6 @@ const {
 const FormFieldComponent = Component.extend({
   layout,
 
-  i18n: service(),
   config: service('ember-form-for/config'),
 
   _defaultErrorsProperty: 'errors',

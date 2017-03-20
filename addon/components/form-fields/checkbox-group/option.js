@@ -17,7 +17,6 @@ export default Component.extend({
   tagName: '',
   layout,
 
-  i18n: service(),
   config: service('ember-form-for/config'),
 
   modelName: or('object.modelName', 'object.constructor.modelName'),
