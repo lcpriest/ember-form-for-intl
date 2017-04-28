@@ -172,6 +172,7 @@ The default form controls are:
  - radio-group
  - range-field
  - search-field
+ - select-field
  - tel-field
  - text-field
  - textarea-field
