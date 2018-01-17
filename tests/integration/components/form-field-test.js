@@ -1,10 +1,12 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { initialize as initializeI18n } from 'dummy/initializers/ember-form-for-i18n';
 
 const {
   Object: EmberObject,
   Service,
+  getOwner,
   guidFor,
   run
 } = Ember;
@@ -16,6 +18,11 @@ moduleForComponent('form-field', 'Integration | Component | {{form-field}}', {
     this.set('object', { givenName: 'Albert' });
   }
 });
+
+function _registerI18n(testingContext, object) {
+  testingContext.registry.register('service:i18n', object);
+  initializeI18n(getOwner(testingContext));
+}
 
 test('It requires an object', function(assert) {
   assert.throws(() => {
@@ -38,12 +45,14 @@ test('It adds a label based on propertyName', function(assert) {
 
 test('If the i18n service is available, compute the label from there', function(assert) {
   assert.expect(2);
-  this.registry.register('service:i18n', EmberObject.extend({
+  _registerI18n(this, EmberObject.extend({
     t(key) {
       assert.equal(key, 'given-name');
       return 'Your name';
     }
   }));
+
+  initializeI18n(getOwner(this));
 
   this.render(hbs`
     {{#form-field "givenName" object=object as |f|}}{{f.label}}{{/form-field}}
@@ -54,7 +63,7 @@ test('If the i18n service is available, compute the label from there', function(
 
 test('If the i18n service is available, and changeset has been used, compute the label from there', function(assert) {
   assert.expect(2);
-  this.registry.register('service:i18n', EmberObject.extend({
+  _registerI18n(this, EmberObject.extend({
     t(key) {
       assert.equal(key, 'given-name');
       return 'Your name';
@@ -74,7 +83,7 @@ test('If the i18n service is available, and changeset has been used, compute the
 
 test('When modelName is present, use it for i18n labels', function(assert) {
   assert.expect(2);
-  this.registry.register('service:i18n', EmberObject.extend({
+  _registerI18n(this, EmberObject.extend({
     t(key) {
       assert.equal(key, 'user.given-name');
       return 'Your name';
@@ -96,7 +105,7 @@ test('An arbitrary prefix can be used for the i18n key', function(assert) {
   }));
 
   assert.expect(2);
-  this.registry.register('service:i18n', EmberObject.extend({
+  _registerI18n(this, EmberObject.extend({
     t(key) {
       assert.equal(key, 'arbitrary.given-name');
       return 'Your name';
