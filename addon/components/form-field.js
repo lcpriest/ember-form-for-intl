@@ -77,10 +77,10 @@ const FormFieldComponent = Component.extend({
     );
 
     assert('{{form-field}} requires an object property to be passed in',
-           get(this, 'object') != null);
+      get(this, 'object') != null);
 
     assert('{{form-field}} requires the propertyName property to be set',
-           typeof get(this, 'propertyName') === 'string');
+      typeof get(this, 'propertyName') === 'string');
 
     set(this, 'modelName', this.getModelName());
   },
@@ -119,7 +119,7 @@ const FormFieldComponent = Component.extend({
       dasherize(get(this, 'modelName') || ''),
       dasherize(get(this, 'propertyName') || '')
     ].filter((x) => !!x)
-     .join('.');
+      .join('.');
   }),
 
   fieldId: computed('object', 'form', 'propertyName', function() {

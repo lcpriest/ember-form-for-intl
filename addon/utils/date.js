@@ -33,7 +33,7 @@ export const fromWeekString = (string) => {
 };
 
 export const toDateString = (date) =>
-   `${toMonthString(date)}-${pad(date.getDate())}`;
+  `${toMonthString(date)}-${pad(date.getDate())}`;
 
 export const toTimeString = (date) =>
   `${pad(date.getHours())}:${pad(date.getMinutes())}`;

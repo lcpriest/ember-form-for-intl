@@ -47,6 +47,6 @@ export default Component.extend({
       dasherize(get(this, 'propertyName') || ''),
       value
     ].filter((x) => !!x)
-     .join('.');
+      .join('.');
   })
 });
