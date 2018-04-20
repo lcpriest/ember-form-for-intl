@@ -1,5 +1,5 @@
 {{#if hasBlock}}
-  {{yield this _stateObject}}
+  {{yield this activePromise}}
 {{else}}
   {{#if activePromise.isPending}}
     {{pending}}
