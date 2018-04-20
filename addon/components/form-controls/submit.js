@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import EmberObject from '@ember/object';
 import Button from './button';
 import layout from 'ember-form-for/templates/components/form-controls/submit';
 
-const { computed: { alias }, PromiseProxyMixin, Object, RSVP, computed } = Ember;
+const { computed: { alias }, PromiseProxyMixin, RSVP, computed } = Ember;
 
 const SubmitButton = Button.extend({
   layout,
@@ -30,7 +31,7 @@ const SubmitButton = Button.extend({
     // PromiseProxyMixin allows us to use .isPending in the templates
     // RSVP.Promise is required to handle situation when submit function
     // returns non-promise.
-    this.set('activePromise', Object.extend(PromiseProxyMixin).create({
+    this.set('activePromise', EmberObject.extend(PromiseProxyMixin).create({
       promise: new RSVP.Promise((resolve) => {
         resolve(this.get('submit')());
       })

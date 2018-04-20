@@ -54,7 +54,7 @@ const RadioFieldComponent = Component.extend({
       dasherize(get(this, 'propertyName') || ''),
       value
     ].filter((x) => !!x)
-     .join('.');
+      .join('.');
   })
 });
 
