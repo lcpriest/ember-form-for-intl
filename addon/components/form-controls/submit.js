@@ -3,7 +3,7 @@ import EmberObject from '@ember/object';
 import Button from './button';
 import layout from 'ember-form-for/templates/components/form-controls/submit';
 
-const { computed: { alias }, PromiseProxyMixin, RSVP, computed } = Ember;
+const { computed: { alias }, PromiseProxyMixin, RSVP, computed, observer } = Ember;
 
 const SubmitButton = Button.extend({
   layout,
@@ -44,6 +44,12 @@ const SubmitButton = Button.extend({
       return true;
     } else {
       return false;
+    }
+  }),
+
+  resetAction: observer('reset', 'activePromise.isFulfilled', 'activePromise.isRejected', function() {
+    if (this.get('reset') && (this.get('activePromise.isFulfilled') || this.get('activePromise.isRejected'))) {
+      this.set('activePromise', undefined);
     }
   })
 });

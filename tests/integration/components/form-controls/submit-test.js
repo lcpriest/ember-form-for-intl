@@ -64,6 +64,58 @@ test('Clicking the submit button supports returning a promise', function(assert)
   });
 });
 
+test('Clicking the submit button supports returns to default state with reset=True', function(assert) {
+  assert.expect(4);
+  let promise = new RSVP.Promise((resolve) => {
+    run.later(this, () => {
+      resolve();
+    }, 500);
+  });
+
+  this.on('submit', () => {
+    return promise;
+  });
+  this.render(hbs`{{form-controls/submit action=(action 'submit') reset=true fulfilled='Succeed'}}`);
+  let $button = this.$('button');
+
+  $button.trigger('click');
+  assert.equal($button.text().trim(), 'Submitting...', 'Button state changes on pending promise');
+  assert.equal(true, $button[0].disabled, 'Button should be disabled when promise is pending');
+
+  return wait().then(() => {
+    promise.then(() => {
+      assert.ok(true);
+      assert.equal($button.text().trim(), 'Submit', 'Button state returns on fulfilled promise');
+    });
+  });
+});
+
+test('Clicking the submit button supports user defined text for fulfilled action', function(assert) {
+  assert.expect(4);
+  let promise = new RSVP.Promise((resolve) => {
+    run.later(this, () => {
+      resolve();
+    }, 500);
+  });
+
+  this.on('submit', () => {
+    return promise;
+  });
+  this.render(hbs`{{form-controls/submit action=(action 'submit') fulfilled='foo'}}`);
+  let $button = this.$('button');
+
+  $button.trigger('click');
+  assert.equal($button.text().trim(), 'Submitting...', 'Button state changes on pending promise');
+  assert.equal(true, $button[0].disabled, 'Button should be disabled when promise is pending');
+
+  return wait().then(() => {
+    promise.then(() => {
+      assert.ok(true);
+      assert.equal($button.text().trim(), 'foo', 'Button state returns on fulfilled promise');
+    });
+  });
+});
+
 test('Clicking the submit button supports returning a promise and changes user-defined content', function(assert) {
   assert.expect(3);
   let promise = new RSVP.Promise((resolve) => {
