@@ -1,17 +1,17 @@
 {
-  "name": "ember-form-for",
-  "version": "2.0.0",
+  "name": "ember-form-for-intl",
+  "version": "1.0.3",
   "description": "Build \"Data Down Actions Up\" forms, with good default markup and built-in accessibility support",
   "keywords": [
     "ember-addon"
   ],
   "license": "MIT",
-  "author": "Marten Schilstra <mail@martenschilstra.nl>",
+  "author": "Lachlan Priest <lachlanpriest@gmail.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/martndemus/ember-form-for",
+  "repository": "https://github.com/lcpriest/ember-form-for-intl",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
@@ -52,7 +52,6 @@
     "node": ">= 4"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config",
-    "demoURL": "http://martndemus.github.io/ember-form-for"
+    "configPath": "tests/dummy/config"
   }
 }

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import registerI18n from '../../../support/register-i18n';
+import registerIntl from '../../../support/register-intl';
 
 const { Object: EmberObject, run } = Ember;
 
@@ -54,9 +54,9 @@ test('Clicking a checkbox updates the property', function(assert) {
   assert.deepEqual(this.get('object.preferences'), ['cats']);
 });
 
-test('The labels are computed from the i18n service if available', function(assert) {
+test('The labels are computed from the intl service if available', function(assert) {
   assert.expect(2);
-  registerI18n(this, EmberObject.extend({
+  registerIntl(this, EmberObject.extend({
     t(key) {
       return key;
     }

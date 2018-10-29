@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import registerI18n from '../../support/register-i18n';
+import registerIntl from '../../support/register-intl';
 
 const {
   Object: EmberObject,
@@ -37,9 +37,9 @@ test('It adds a label based on propertyName', function(assert) {
   assert.equal(this.$('label').text().trim(), 'Given name');
 });
 
-test('If the i18n service is available, compute the label from there', function(assert) {
+test('If the intl service is available, compute the label from there', function(assert) {
   assert.expect(2);
-  registerI18n(this, EmberObject.extend({
+  registerIntl(this, EmberObject.extend({
     t(key) {
       assert.equal(key, 'given-name');
       return 'Your name';
@@ -53,9 +53,9 @@ test('If the i18n service is available, compute the label from there', function(
   assert.equal(this.$('label').text().trim(), 'Your name');
 });
 
-test('If the i18n service is available, and changeset has been used, compute the label from there', function(assert) {
+test('If the intl service is available, and changeset has been used, compute the label from there', function(assert) {
   assert.expect(2);
-  registerI18n(this, EmberObject.extend({
+  registerIntl(this, EmberObject.extend({
     t(key) {
       assert.equal(key, 'given-name');
       return 'Your name';
@@ -73,9 +73,9 @@ test('If the i18n service is available, and changeset has been used, compute the
   assert.equal(this.$('label').text().trim(), 'Your name');
 });
 
-test('When modelName is present, use it for i18n labels', function(assert) {
+test('When modelName is present, use it for intl labels', function(assert) {
   assert.expect(2);
-  registerI18n(this, EmberObject.extend({
+  registerIntl(this, EmberObject.extend({
     t(key) {
       assert.equal(key, 'user.given-name');
       return 'Your name';
@@ -91,13 +91,13 @@ test('When modelName is present, use it for i18n labels', function(assert) {
   assert.equal(this.$('label').text().trim(), 'Your name');
 });
 
-test('An arbitrary prefix can be used for the i18n key', function(assert) {
+test('An arbitrary prefix can be used for the intl key', function(assert) {
   this.register('service:ember-form-for/config', Service.extend({
-    i18nKeyPrefix: 'arbitrary'
+    intlKeyPrefix: 'arbitrary'
   }));
 
   assert.expect(2);
-  registerI18n(this, EmberObject.extend({
+  registerIntl(this, EmberObject.extend({
     t(key) {
       assert.equal(key, 'arbitrary.given-name');
       return 'Your name';
@@ -350,7 +350,7 @@ test('It can yield the labelText', function(assert) {
 test('It can yield a hint', function(assert) {
   this.render(hbs`
     {{#form-field "givenName" object=object hint="This is a hint" as |f|}}
-      {{f.hint}}
+      {{f.hintText}}
     {{/form-field}}
   `);
   assert.equal(this.$('span').text().trim(), 'This is a hint');
