@@ -1,6 +1,6 @@
 {
   "name": "ember-form-for-intl",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Build \"Data Down Actions Up\" forms, with good default markup and built-in accessibility support",
   "keywords": [
     "ember-addon"
