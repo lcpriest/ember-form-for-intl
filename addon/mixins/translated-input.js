@@ -12,6 +12,20 @@ const {
 
 export default Mixin.create({
   intl: service(),
+  config: service('ember-form-for/config'),
+
+  modelName: computed('form', 'object.{modelName,constructor.modelName,_content.constructor.modelName}', function() {
+    return this.getModelName();
+  }),
+
+  getModelName() {
+    let formName = get(this, 'form');
+    let modelName = get(this, 'object.modelName');
+    let constructorName = get(this, 'object.constructor.modelName');
+    let changesetConstructorName = get(this, 'object._content.constructor.modelName');
+
+    return formName || modelName || constructorName || changesetConstructorName;
+  },
 
   labelText: computed('propertyName', 'label', function() {
     let intl = get(this, 'intl');

@@ -130,15 +130,6 @@ const FormFieldComponent = Component.extend(TranslatedInput, {
     return get(this, 'modelName') || guidFor(get(this, 'object'));
   },
 
-  getModelName() {
-    let formName = get(this, 'form');
-    let modelName = get(this, 'object.modelName');
-    let constructorName = get(this, 'object.constructor.modelName');
-    let changesetConstructorName = get(this, 'object._content.constructor.modelName');
-
-    return formName || modelName || constructorName || changesetConstructorName;
-  },
-
   value: computed('rawValue', function() {
     let serializeValue = getWithDefault(this, 'serializeValue', (value) => value);
     return serializeValue(get(this, 'rawValue'));
