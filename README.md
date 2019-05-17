@@ -1,9 +1,7 @@
-# Ember Form For
+# Ember Form For Intl
 
-![Download count all time](https://img.shields.io/npm/dt/ember-form-for.svg)
-[![npm version](https://badge.fury.io/js/ember-form-for.svg)](http://badge.fury.io/js/ember-form-for)
-[![CircleCI](https://circleci.com/gh/martndemus/ember-form-for.svg?style=shield)](https://circleci.com/gh/martndemus/ember-form-for)
-[![Ember Observer Score](http://emberobserver.com/badges/ember-form-for.svg)](http://emberobserver.com/addons/ember-form-for)
+![Download count all time](https://img.shields.io/npm/dt/ember-form-for-intl.svg)
+[![npm version](https://badge.fury.io/js/ember-form-for-intl.svg)](http://badge.fury.io/js/ember-form-for-intl)
 
 This Ember.js addon will give you an easy way to build good forms:
   * Supports all HTML5 input types, textarea and select, backed by [`ember-one-way-controls`](https://github.com/DockYard/ember-one-way-controls)
@@ -16,12 +14,10 @@ This Ember.js addon will give you an easy way to build good forms:
 __WARNING__: This addon uses __contextual helpers__ and is therefore only
 compatible with apps built with Ember.js version __2.3__ and up.
 
-__NOTE__: I'm working on rewriting docs, [click here](https://github.com/martndemus/ember-form-for/tree/1.4.1) for the old docs!
-
 ## Installation
 
 ```
-ember install ember-form-for
+ember install ember-form-for-intl
 ```
 
 ## Quickstart Example
